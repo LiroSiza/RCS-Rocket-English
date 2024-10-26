@@ -3,7 +3,17 @@
     <style name="Base.Theme.RCSRocketEnglish" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <!-- <item name="colorPrimary">@color/black</item> -->
+        <!-- <item name="colorPrimaryVariant">@color/ligth_gray</item> -->
+        <!-- <item name="colorOnPrimary">@color/gray</item> -->
+        <!-- <item name="android:windowBackground">@color/black</item> -->
     </style>
 
     <style name="Theme.RCSRocketEnglish" parent="Base.Theme.RCSRocketEnglish" />
+    <style name="Theme.RCSRocketEnglishNight" parent="Base.Theme.RCSRocketEnglish" >
+        <item name="colorPrimary">@color/black</item>
+        <item name="colorPrimaryVariant">@color/ligth_gray</item>
+        <item name="colorOnPrimary">@color/gray</item>
+        <item name="android:windowBackground">@color/black</item>
+    </style>
 </resources>
