@@ -9,6 +9,8 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.rcs_rocket_english.controls.FollowUpStadistics;
+
 
 public class FollowUpActivity  extends AppCompatActivity {
     @Override
@@ -23,6 +25,12 @@ public class FollowUpActivity  extends AppCompatActivity {
         });
         // Forzar modo oscuro
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+
+        FollowUpStadistics expCard = findViewById(R.id.card);
+        // Configuración de cada tarjeta
+        expCard.setTitleTextView("EXP");
+        expCard.setIconImageView(R.drawable.icon_lightning); // Cambia a tu ícono correspondiente
+        expCard.setValueTextView("673");
 
     }
 }
