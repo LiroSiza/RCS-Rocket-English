@@ -11,6 +11,10 @@
         android:foregroundGravity="center"
         android:layout_height="match_parent"
         android:layout_above="@id/navbarControl"/>
+
+
+
+
     <com.rcs_rocket_english.controls.NavigationMenu
         android:id="@+id/navbarControl"
         android:layout_width="match_parent"

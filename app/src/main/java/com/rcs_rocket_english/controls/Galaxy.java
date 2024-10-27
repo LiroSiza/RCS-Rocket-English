@@ -25,7 +25,8 @@ public class Galaxy extends AppCompatButton {
     private LinearGradient gradient;
     private int width;
     private int height;
-    private float progress = 1F;
+    private float progress = 0F;
+    String descripción;
 
     public Galaxy(@NonNull Context context) {
         super(context);
@@ -62,6 +63,9 @@ public class Galaxy extends AppCompatButton {
         pDesc.setTypeface(typeface);
 
         pProg.setTypeface(typeface);
+
+        //leer de un archivo el progreso de la galaxia
+        descripción = "File not found";
     }
 
     public void setProgress(float progress) {
@@ -105,9 +109,11 @@ public class Galaxy extends AppCompatButton {
         canvas.drawRoundRect(rect3, 40f, 40f, pProgBarTotal);
 
         //Progress bar
-        pProgBar.setColor(Color.YELLOW);
-        RectF rect2 = new RectF(getWidth() / 20, getHeight() * 76 / 100, (width * 83 / 100) * progress, height - 50);
-        canvas.drawRoundRect(rect2, 40f, 40f, pProgBar);
+        if(progress != 0) {
+            pProgBar.setColor(Color.YELLOW);
+            RectF rect2 = new RectF(getWidth() / 20, getHeight() * 76 / 100, (width * 83 / 100) * progress, height - 50);
+            canvas.drawRoundRect(rect2, 40f, 40f, pProgBar);
+        }
 
 
         float textWidth = pTexto.measureText(getText().toString());
@@ -118,10 +124,10 @@ public class Galaxy extends AppCompatButton {
         //descripcion
 
 
-        float textWidth2 = pDesc.measureText("Pasado, presente y futuro en una cafetería");
+        float textWidth2 = pDesc.measureText(descripción);
         float textX2 = getWidth() / 20; // Center the text horizontally
         float textY2 = getHeight() * 48 / 100; // Center the text vertically
-        canvas.drawText("Pasado, presente y futuro en una cafetería", textX2, textY2, pDesc);
+        canvas.drawText(descripción, textX2, textY2, pDesc);
 
         //progreso
         String progressText = (int) (progress * 100) + "%";
