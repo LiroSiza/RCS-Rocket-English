@@ -14,6 +14,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatButton;
 
+import com.rcs_rocket_english.R;
+
 public class Galaxy extends AppCompatButton {
     float escala = getResources().getDisplayMetrics().density;
     Paint pFondo = new Paint(Paint.ANTI_ALIAS_FLAG);
@@ -57,7 +59,9 @@ public class Galaxy extends AppCompatButton {
         pProg.setTextSize(60f);
         pProg.setFakeBoldText(true);
 
-        Typeface typeface = Typeface.createFromAsset(getContext().getAssets(), "fonts/Agdasima-Regular.ttf");
+
+        Typeface typeface = getResources().getFont(R.font.agdasima_regular); // Reference the font
+
         pTexto.setTypeface(typeface);
 
         pDesc.setTypeface(typeface);
