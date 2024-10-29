@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">RCS-Rocket-English</string>
     <string name="app_name_2">Rocket English</string>
+    <string name="follow_up_msg">¡ Buen trabajo !</string>
+    <string name="btn_continuar">CONTINUAR</string>
+    <string name="exp">EXP</string>
+    <string name="tiempo">TIEMPO</string>
+
 </resources>
