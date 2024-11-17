@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity implements NavigationMenu.On
         ImageButton ast1,ast2,ast3,ast4,ast5,ast6,ast7,ast8,ast9,ast10;
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.galaxy_levels_v2);
+        setContentView(R.layout.galaxy_levels_v1);
         // Forzar modo oscuro
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
 
