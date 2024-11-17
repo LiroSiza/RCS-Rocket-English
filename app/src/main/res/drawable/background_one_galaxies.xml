@@ -1,0 +1,3 @@
+<bitmap xmlns:android="http://schemas.android.com/apk/res/android"
+    android:src="@drawable/background_one"
+    android:tileMode="repeat" /> <!-- Esto repite la imagen en la dirección vertical -->

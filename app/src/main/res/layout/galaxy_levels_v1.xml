@@ -11,7 +11,8 @@
         android:layout_height="match_parent"
         android:scrollbars="none"
         android:fadeScrollbars="false"
-        android:layout_marginBottom="56dp">
+        android:layout_marginBottom="56dp"
+        android:background="@drawable/background_one_galaxies">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -19,7 +20,7 @@
 
             <ImageButton
                 android:id="@+id/asteroid_1"
-                android:layout_width="77dp"
+                android:layout_width="85dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="80dp"
                 android:adjustViewBounds="true"
@@ -33,10 +34,10 @@
 
             <ImageButton
                 android:id="@+id/asteroid_2"
-                android:layout_width="77dp"
+                android:layout_width="85dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="60dp"
-                android:layout_marginTop="300dp"
+                android:layout_marginStart="52dp"
+                android:layout_marginTop="312dp"
                 android:adjustViewBounds="true"
                 android:background="@android:color/transparent"
                 android:scaleType="fitCenter"
@@ -46,7 +47,7 @@
 
             <ImageButton
                 android:id="@+id/asteroid_3"
-                android:layout_width="77dp"
+                android:layout_width="85dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="176dp"
                 android:layout_marginTop="500dp"
@@ -59,7 +60,7 @@
 
             <ImageButton
                 android:id="@+id/asteroid_4"
-                android:layout_width="77dp"
+                android:layout_width="85dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="288dp"
                 android:layout_marginTop="760dp"
@@ -72,9 +73,9 @@
 
             <ImageButton
                 android:id="@+id/asteroid_5"
-                android:layout_width="77dp"
+                android:layout_width="85dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="60dp"
+                android:layout_marginStart="52dp"
                 android:layout_marginTop="1040dp"
                 android:adjustViewBounds="true"
                 android:background="@android:color/transparent"
@@ -85,7 +86,7 @@
 
             <ImageButton
                 android:id="@+id/asteroid_6"
-                android:layout_width="77dp"
+                android:layout_width="85dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="164dp"
                 android:layout_marginTop="1320dp"
@@ -98,7 +99,7 @@
 
             <ImageButton
                 android:id="@+id/asteroid_7"
-                android:layout_width="77dp"
+                android:layout_width="85dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="288dp"
                 android:layout_marginTop="1600dp"
@@ -111,7 +112,7 @@
 
             <ImageButton
                 android:id="@+id/asteroid_8"
-                android:layout_width="77dp"
+                android:layout_width="85dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="164dp"
                 android:layout_marginTop="1880dp"
@@ -124,9 +125,9 @@
 
             <ImageButton
                 android:id="@+id/asteroid_9"
-                android:layout_width="77dp"
+                android:layout_width="85dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="48dp"
+                android:layout_marginStart="32dp"
                 android:layout_marginTop="2180dp"
                 android:adjustViewBounds="true"
                 android:background="@android:color/transparent"
@@ -137,7 +138,7 @@
 
             <ImageButton
                 android:id="@+id/asteroid_10"
-                android:layout_width="77dp"
+                android:layout_width="85dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="164dp"
                 android:layout_marginTop="2500dp"
@@ -148,70 +149,68 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <!-- Nuevo ImageButton planet_1 a planet_5 -->
-
             <ImageButton
                 android:id="@+id/planet_1"
-                android:layout_width="95dp"
+                android:layout_width="120dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="268dp"
-                android:layout_marginTop="288dp"
+                android:layout_marginStart="244dp"
+                android:layout_marginTop="280dp"
                 android:adjustViewBounds="true"
                 android:background="@android:color/transparent"
                 android:scaleType="fitCenter"
-                android:src="@drawable/icon_target"
+                android:src="@drawable/planet_one"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageButton
                 android:id="@+id/planet_2"
-                android:layout_width="95dp"
+                android:layout_width="120dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="60dp"
                 android:layout_marginTop="752dp"
                 android:adjustViewBounds="true"
                 android:background="@android:color/transparent"
                 android:scaleType="fitCenter"
-                android:src="@drawable/icon_target"
+                android:src="@drawable/planet_two"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageButton
                 android:id="@+id/planet_3"
-                android:layout_width="95dp"
+                android:layout_width="120dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="252dp"
                 android:layout_marginTop="1024dp"
                 android:adjustViewBounds="true"
                 android:background="@android:color/transparent"
                 android:scaleType="fitCenter"
-                android:src="@drawable/icon_target"
+                android:src="@drawable/planet_three"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageButton
                 android:id="@+id/planet_4"
-                android:layout_width="95dp"
+                android:layout_width="120dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="68dp"
+                android:layout_marginStart="52dp"
                 android:layout_marginTop="1592dp"
                 android:adjustViewBounds="true"
                 android:background="@android:color/transparent"
                 android:scaleType="fitCenter"
-                android:src="@drawable/icon_target"
+                android:src="@drawable/planet_four"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageButton
                 android:id="@+id/planet_5"
-                android:layout_width="95dp"
+                android:layout_width="120dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="252dp"
-                android:layout_marginTop="2168dp"
+                android:layout_marginStart="244dp"
+                android:layout_marginTop="2156dp"
                 android:adjustViewBounds="true"
                 android:background="@android:color/transparent"
                 android:scaleType="fitCenter"
-                android:src="@drawable/icon_target"
+                android:src="@drawable/planet_five"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
