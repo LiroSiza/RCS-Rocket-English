@@ -19,6 +19,7 @@ public class MainActivity extends AppCompatActivity implements NavigationMenu.On
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.galaxy_levels_v1);
+      
         // Forzar modo oscuro
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
 
