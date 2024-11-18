@@ -9,7 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.bumptech.glide.Glide;
 import com.rcs_rocket_english.R;
 
-public class ExcerciseVersionOne extends AppCompatActivity {
+public class ExerciseVersionOne extends AppCompatActivity {
     private Handler handler = new Handler();
 
     @Override

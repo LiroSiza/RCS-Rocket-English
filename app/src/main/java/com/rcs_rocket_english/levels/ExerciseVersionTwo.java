@@ -4,7 +4,7 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import com.rcs_rocket_english.R;
 
-public class ExcerciseVersionTwo  extends AppCompatActivity {
+public class ExerciseVersionTwo extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

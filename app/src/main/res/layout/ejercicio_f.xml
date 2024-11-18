@@ -9,89 +9,122 @@
     <TextView
         android:id="@+id/textView21"
         style="@style/CustomTextViewExercise"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="65dp"
-        android:text="Selecciona la afirmación correcta"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="135dp"
+        android:text="Selecciona los pares"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/textView22"
-        android:layout_width="match_parent"
+    <Button
+        android:id="@+id/button11"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="21dp"
-        android:layout_marginRight="15dp"
-        android:fontFamily="@font/opensans_variablefont_wdth_wght"
-        android:padding="8dp"
-        android:text="The Solar System and its Planets"
-        android:textColor="@color/white"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.551"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="200dp"
+        android:backgroundTint="@color/white"
+        android:text="cuál es"
+        android:textColor="@color/gray"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView21" />
-
-    <TextView
-        android:id="@+id/textView23"
-        android:layout_width="match_parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <Button
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginRight="15dp"
-        android:fontFamily="@font/opensans_variablefont_wdth_wght"
-        android:padding="8dp"
-        android:text="The solar system consists of the Sun and the objects that orbit it, including eight planets. These planets are divided into two groups: the inner planets and the outer planets. The inner planets—Mercury, Venus, Earth, and Mars—are closer to the Sun and have rocky surfaces. The outer planets—Jupiter, Saturn, Uranus, and Neptune—are much larger and are primarily made of gas. While the inner planets are relatively small, the outer planets are known as gas giants due to their enormous size and composition."
-        android:textColor="@color/white"
-        android:textSize="14sp"
+        android:layout_marginTop="200dp"
+        android:layout_marginEnd="40dp"
+        android:backgroundTint="@color/white"
+        android:text="hello"
+        android:textColor="@color/gray"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.482"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <Button
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="250dp"
+        android:backgroundTint="@color/white"
+        android:text="mucho gusto"
+        android:textColor="@color/gray"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView22" />
-
+        app:layout_constraintTop_toTopOf="parent" />
     <Button
-        android:id="@+id/button10"
-        android:layout_width="match_parent"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginBottom="240dp"
+        android:layout_marginTop="250dp"
+        android:layout_marginEnd="40dp"
         android:backgroundTint="@color/white"
-        android:text="The outer planets are smaller than the inner planets and are made of rock."
+        android:text="what's"
         android:textColor="@color/gray"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.375"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginBottom="180dp"
-        android:backgroundTint="@color/white"
-        android:text="The inner planets are closer to the Sun and have rocky surfaces."
-        android:textColor="@color/gray"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 
     <Button
-        android:layout_width="match_parent"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginBottom="120dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="300dp"
         android:backgroundTint="@color/white"
-        android:text="The solar system has nine planets, all of which are the same size."
+        android:text="adiós"
         android:textColor="@color/gray"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <Button
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="300dp"
+        android:layout_marginEnd="40dp"
+        android:backgroundTint="@color/white"
+        android:text="nice to meet u"
+        android:textColor="@color/gray"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.65"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <Button
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="350dp"
+        android:backgroundTint="@color/white"
+        android:text="hola"
+        android:textColor="@color/gray"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <Button
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="350dp"
+        android:layout_marginEnd="40dp"
+        android:backgroundTint="@color/white"
+        android:text="too"
+        android:textColor="@color/gray"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+
+    <Button
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="400dp"
+        android:backgroundTint="@color/white"
+        android:text="también"
+        android:textColor="@color/gray"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <Button
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="400dp"
+        android:layout_marginEnd="40dp"
+        android:backgroundTint="@color/white"
+        android:text="bye"
+        android:textColor="@color/gray"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         style="@style/CustomButtonViewExercise"
