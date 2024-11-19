@@ -40,7 +40,7 @@
                 />
 
             <com.rcs_rocket_english.controls.Galaxy
-                android:text="GALAXIA I - Vocabulary"
+                android:text="GALAXIA III - Vocabulary"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:layout_margin="10dp"
