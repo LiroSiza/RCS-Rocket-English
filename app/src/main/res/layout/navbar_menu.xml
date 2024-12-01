@@ -35,7 +35,7 @@
                 android:textSize="18sp"
                 android:fontFamily="@font/patrickhand_regular"
                 android:layout_height="wrap_content"
-                android:text="1200"
+                android:text="0"
                 android:textColor="@color/white"/>
         </LinearLayout>
         <LinearLayout

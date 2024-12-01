@@ -38,6 +38,9 @@ public class GalaxiesActivity extends AppCompatActivity implements NavBarMenu.On
         navBarMenu.setOnNavItemSelectedListener(this);
         navigationMenu.setOnNavItemSelectedListener(this);
 
+        //inicializar datos de lightning y hearts
+        navBarMenu.setTextLightning("5");
+        navBarMenu.setTextLightning("10");
 
         // Forzar modo oscuro
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);

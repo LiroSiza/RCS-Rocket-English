@@ -12,17 +12,18 @@ import androidx.annotation.Nullable;
 
 import com.rcs_rocket_english.R;
 
+import android.widget.TextView;
+
 public class NavBarMenu extends LinearLayout {
     ImageButton btnProfile;
     ImageView lightning, hearts;
+    TextView textlightning, textHearts;
     private OnNavItemSelectedListener listener;
 
-    // Interfaz para la comunicación entre el control y las actividades
     public interface OnNavItemSelectedListener {
         void onNavItemSelected(int itemId);
     }
 
-    // Método para registrar el listener
     public void setOnNavItemSelectedListener(OnNavItemSelectedListener listener) {
         this.listener = listener;
     }
@@ -54,6 +55,8 @@ public class NavBarMenu extends LinearLayout {
         btnProfile = findViewById(R.id.btnProfile);
         lightning = findViewById(R.id.lightning);
         hearts = findViewById(R.id.hearts);
+        textlightning = findViewById(R.id.textlightning);
+        textHearts = findViewById(R.id.textHearts);
 
         btnProfile.setBackgroundResource(R.drawable.btn_profile);
         lightning.setBackgroundResource(R.drawable.icon_lightning);
@@ -83,18 +86,35 @@ public class NavBarMenu extends LinearLayout {
         }
     };
 
-    // Método para cambiar la imagen del btnProfile dependiendo de la clase o estado
     public void cambiarImagenPerfil(int estado) {
         switch (estado) {
             case 1:
                 btnProfile.setBackgroundResource(R.drawable.btn_profile);
                 break;
             case 2:
-                btnProfile.setBackgroundResource(R.drawable.btn_challenge);
+                btnProfile.setBackgroundResource(R.drawable.btn_baseline_arrow_back_ios_new_24);
                 break;
             default:
-                btnProfile.setBackgroundResource(R.drawable.btn_profile); // Imagen por defecto
+                btnProfile.setBackgroundResource(R.drawable.btn_profile);
                 break;
         }
+    }
+
+    // Métodos para manejar textlightning
+    public String getTextLightning() {
+        return textlightning.getText().toString();
+    }
+
+    public void setTextLightning(String text) {
+        textlightning.setText(text);
+    }
+
+    // Métodos para manejar textHearts
+    public String getTextHearts() {
+        return textHearts.getText().toString();
+    }
+
+    public void setTextHearts(String text) {
+        textHearts.setText(text);
     }
 }

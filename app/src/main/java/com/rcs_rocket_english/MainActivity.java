@@ -25,6 +25,10 @@ public class MainActivity extends AppCompatActivity
         navBarMenu = findViewById(R.id.navbarMenu);
         navBarMenu.cambiarImagenPerfil(1); // Cambia la imagen a btn_profile_estado_1
 
+        //inicializar datos de lightning y hearts
+        navBarMenu.setTextLightning("5");
+        navBarMenu.setTextLightning("10");
+
 
         // Inicializa los controles
         navBarMenu = findViewById(R.id.navbarMenu);
