@@ -21,6 +21,7 @@ public class NavBarMenu extends LinearLayout {
     public interface OnNavItemSelectedListener {
         void onNavItemSelected(int itemId);
     }
+
     // Método para registrar el listener
     public void setOnNavItemSelectedListener(OnNavItemSelectedListener listener) {
         this.listener = listener;
@@ -46,7 +47,7 @@ public class NavBarMenu extends LinearLayout {
         inicializar();
     }
 
-    public void inicializar(){
+    public void inicializar() {
         LayoutInflater li = LayoutInflater.from(getContext());
         li.inflate(R.layout.navbar_menu, this, true);
 
@@ -61,7 +62,7 @@ public class NavBarMenu extends LinearLayout {
         asignarEventos();
     }
 
-    public void asignarEventos(){
+    public void asignarEventos() {
         btnProfile.setOnClickListener(evento);
         lightning.setOnClickListener(evento);
         hearts.setOnClickListener(evento);
@@ -82,4 +83,18 @@ public class NavBarMenu extends LinearLayout {
         }
     };
 
+    // Método para cambiar la imagen del btnProfile dependiendo de la clase o estado
+    public void cambiarImagenPerfil(int estado) {
+        switch (estado) {
+            case 1:
+                btnProfile.setBackgroundResource(R.drawable.btn_profile);
+                break;
+            case 2:
+                btnProfile.setBackgroundResource(R.drawable.btn_challenge);
+                break;
+            default:
+                btnProfile.setBackgroundResource(R.drawable.btn_profile); // Imagen por defecto
+                break;
+        }
+    }
 }

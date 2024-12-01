@@ -1,15 +1,22 @@
 package com.rcs_rocket_english;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.animation.ScaleAnimation;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 
+import com.rcs_rocket_english.controls.NavBarMenu;
 import com.rcs_rocket_english.controls.NavigationMenu;
 
-public class GalaxiesActivity extends AppCompatActivity implements NavigationMenu.OnNavItemSelectedListener{
+public class GalaxiesActivity extends AppCompatActivity implements NavBarMenu.OnNavItemSelectedListener, NavigationMenu.OnNavItemSelectedListener{
+
+    private NavBarMenu navBarMenu;
+    private NavigationMenu navigationMenu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,9 +24,21 @@ public class GalaxiesActivity extends AppCompatActivity implements NavigationMen
         ImageButton ast1,ast2,ast3,ast4,ast5,ast6,ast7,ast8,ast9,ast10;
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.galaxies);
+        setContentView(R.layout.galaxy_levels_v1);
 
-        /*
+        // Cambiar imagen del boton
+        navBarMenu = findViewById(R.id.navbarMenu);
+        navBarMenu.cambiarImagenPerfil(2); // Cambia la imagen a btn_profile_estado_1
+
+        // Inicializa los controles
+        navBarMenu = findViewById(R.id.navbarMenu);
+        navigationMenu = findViewById(R.id.navbarControl);
+
+        // Registra el listener para ambos controles
+        navBarMenu.setOnNavItemSelectedListener(this);
+        navigationMenu.setOnNavItemSelectedListener(this);
+
+
         // Forzar modo oscuro
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
 
@@ -49,15 +68,26 @@ public class GalaxiesActivity extends AppCompatActivity implements NavigationMen
         // Lista de IDs de los ImageButton
         int[] buttonIds = {
                 R.id.asteroid_1, R.id.asteroid_2, R.id.asteroid_3, R.id.asteroid_4,
-                R.id.asteroid_5, R.id.asteroid_6, R.id.asteroid_7, R.id.asteroid_8,
-                R.id.asteroid_9, R.id.asteroid_10
+                R.id.asteroid_5, R.id.asteroid_6
         };
 
         // Recorrer el array de botones y asignar el OnTouchListener a cada uno
         for (int id : buttonIds) {
             ImageButton button = findViewById(id);
             setButtonTouchListener(button, scaleUp, scaleDown);  // Asignar listener
-        }*/
+        }
+    }
+
+    @Override
+    public void onNavItemSelected(int itemId) {
+        if (itemId == R.id.btnChallenge) {
+            openActivity(ProfileActivity.class);
+        }
+    }
+
+    // Método para abrir actividades
+    private void openActivity(Class<?> activityClass) {
+        finish();
     }
 
     // Función para asignar el OnTouchListener a un ImageButton
@@ -75,10 +105,5 @@ public class GalaxiesActivity extends AppCompatActivity implements NavigationMen
             }
             return false;  // No interferir con otros eventos de toque
         });
-    }
-
-    @Override
-    public void onNavItemSelected(int itemId) {
-
     }
 }

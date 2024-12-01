@@ -22,6 +22,10 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.galaxies);  // Asegúrate de usar tu layout aquí
 
+        navBarMenu = findViewById(R.id.navbarMenu);
+        navBarMenu.cambiarImagenPerfil(1); // Cambia la imagen a btn_profile_estado_1
+
+
         // Inicializa los controles
         navBarMenu = findViewById(R.id.navbarMenu);
         navigationMenu = findViewById(R.id.navbarControl);
