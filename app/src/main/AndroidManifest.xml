@@ -13,7 +13,7 @@
         android:theme="@style/Theme.RCSRocketEnglishNight"
         tools:targetApi="31">
         <activity
-            android:name=".levels.ExerciseVersionThree"
+            android:name=".GalaxiesActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -30,15 +30,19 @@
             android:exported="false">
         </activity>
         <activity
-            android:name=".MainActivity"
-            android:exported="false">
-        </activity>
-        <activity
             android:name=".levels.ExerciseVersionOne"
             android:exported="false">
         </activity>
         <activity
             android:name=".levels.ExerciseVersionTwo"
+            android:exported="false">
+        </activity>
+        <activity
+            android:name=".levels.ExerciseVersionThree"
+            android:exported="false">
+        </activity>
+        <activity
+            android:name=".ProfileActivity"
             android:exported="false">
         </activity>
     </application>
