@@ -18,8 +18,9 @@ public class MainActivity extends AppCompatActivity implements NavigationMenu.On
         ImageButton ast1,ast2,ast3,ast4,ast5,ast6,ast7,ast8,ast9,ast10;
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.galaxy_levels_v1);
-      
+        setContentView(R.layout.galaxies);
+
+        /*
         // Forzar modo oscuro
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
 
@@ -57,7 +58,7 @@ public class MainActivity extends AppCompatActivity implements NavigationMenu.On
         for (int id : buttonIds) {
             ImageButton button = findViewById(id);
             setButtonTouchListener(button, scaleUp, scaleDown);  // Asignar listener
-        }
+        }*/
     }
 
     // Función para asignar el OnTouchListener a un ImageButton
