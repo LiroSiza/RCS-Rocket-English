@@ -1,6 +1,8 @@
 package com.rcs_rocket_english;
 
 import android.os.Bundle;
+import android.widget.ImageButton;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 public class ProfileActivity extends AppCompatActivity {
@@ -9,5 +11,11 @@ public class ProfileActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.profile);
+
+        // Boton de return a la actividad principal
+        ImageButton btnReturn = findViewById(R.id.btnReturn);
+        btnReturn.setOnClickListener(v -> {
+            finish();
+        });
     }
 }

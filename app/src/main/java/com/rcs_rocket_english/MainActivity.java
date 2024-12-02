@@ -20,10 +20,10 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.galaxies);  // Asegúrate de usar tu layout aquí
+        setContentView(R.layout.galaxies);
 
         navBarMenu = findViewById(R.id.navbarMenu);
-        navBarMenu.cambiarImagenPerfil(1); // Cambia la imagen a btn_profile_estado_1
+        navBarMenu.cambiarImagenPerfil(1);
 
         //inicializar datos de lightning y hearts
         navBarMenu.setTextLightning("5");
@@ -44,15 +44,12 @@ public class MainActivity extends AppCompatActivity
         if (itemId == R.id.btnChallenge) {
             openActivity(ProfileActivity.class);
         } else if (itemId == R.id.btnHome) {
-            // Descomenta para abrir la actividad Home
             // openActivity(HomeActivity.class);
         } else if (itemId == R.id.btnSettings) {
-            // Descomenta para abrir la actividad Settings
             // openActivity(SettingsActivity.class);
         } else if (itemId == R.id.btnProfile) {
             openActivity(ProfileActivity.class);
         } else {
-            // Agrega un bloque else para el caso desconocido
             Toast.makeText(this, "Opción desconocida", Toast.LENGTH_SHORT).show();
         }
     }
