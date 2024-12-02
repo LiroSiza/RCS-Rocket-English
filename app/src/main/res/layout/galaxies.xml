@@ -47,7 +47,7 @@
                 />
 
             <com.rcs_rocket_english.controls.Galaxy
-                android:text="GALAXIA I - Listening"
+                android:text="GALAXIA IV - Listening"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:layout_margin="10dp"

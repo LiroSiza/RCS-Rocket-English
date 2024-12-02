@@ -4,22 +4,27 @@ import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.animation.ScaleAnimation;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
 import com.rcs_rocket_english.controls.NavigationMenu;
 
-public class MainActivity extends AppCompatActivity implements NavigationMenu.OnNavItemSelectedListener{
+public class MainActivity extends AppCompatActivity implements NavigationMenu.OnNavItemSelectedListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         ImageButton ast1,ast2,ast3,ast4,ast5,ast6,ast7,ast8,ast9,ast10;
+        TextView text1;
+        String whatever;
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.galaxy_levels_v1);
-      
+        setContentView(R.layout.activity_main);
+
+
+
         // Forzar modo oscuro
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
 
@@ -58,6 +63,9 @@ public class MainActivity extends AppCompatActivity implements NavigationMenu.On
             ImageButton button = findViewById(id);
             setButtonTouchListener(button, scaleUp, scaleDown);  // Asignar listener
         }
+
+
+
     }
 
     // Función para asignar el OnTouchListener a un ImageButton
