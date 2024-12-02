@@ -88,16 +88,19 @@ public class GalaxiesActivity extends AppCompatActivity implements NavBarMenu.On
 
     @Override
     public void onNavItemSelected(int itemId) {
-        if (itemId == R.id.btnChallenge) {
+        if (itemId == R.id.btnSettings) {
             openActivity(ProfileActivity.class);
         }else if (itemId == R.id.btnHome) {
+            finish();
+        }else if (itemId == R.id.btnProfile) {
             finish();
         }
     }
 
     // Método para abrir actividades
     private void openActivity(Class<?> activityClass) {
-        finish();
+        Intent intent = new Intent(GalaxiesActivity.this, activityClass);
+        startActivity(intent);
     }
 
     // Función para asignar el OnTouchListener a un ImageButton
