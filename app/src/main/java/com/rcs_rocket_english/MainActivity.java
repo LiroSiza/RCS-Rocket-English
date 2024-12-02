@@ -5,6 +5,7 @@ import static androidx.core.content.ContextCompat.startActivity;
 import android.os.Bundle;
 import android.content.Intent;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,14 +17,25 @@ import com.rcs_rocket_english.controls.NavBarMenu;
 public class MainActivity extends AppCompatActivity
         implements NavBarMenu.OnNavItemSelectedListener, NavigationMenu.OnNavItemSelectedListener {
 
+public class MainActivity extends AppCompatActivity implements NavigationMenu.OnNavItemSelectedListener {
+
     private NavBarMenu navBarMenu;
     private NavigationMenu navigationMenu;
-
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.galaxies);
 
+        ImageButton ast1,ast2,ast3,ast4,ast5,ast6,ast7,ast8,ast9,ast10;
+        TextView text1;
+        String whatever;
+
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+
+
+        // Forzar modo oscuro
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
         navBarMenu = findViewById(R.id.navbarMenu);
         navBarMenu.cambiarImagenPerfil(1);
 
@@ -38,11 +50,18 @@ public class MainActivity extends AppCompatActivity
         navBarMenu.setOnNavItemSelectedListener(this);
         navigationMenu.setOnNavItemSelectedListener(this);
 
+
+        // Recorrer el array de botones y asignar el OnTouchListener a cada uno
+        for (int id : buttonIds) {
+            ImageButton button = findViewById(id);
+            setButtonTouchListener(button, scaleUp, scaleDown);  // Asignar listener
+        }
         // Configurar listeners para los botones de las galaxias
         configureGalaxyListener(R.id.galaxyUno, R.layout.galaxy_levels_v1);
         configureGalaxyListener(R.id.galaxyDos, R.layout.galaxy_levels_v2);
         configureGalaxyListener(R.id.galaxyTres, R.layout.galaxy_levels_v3);
         configureGalaxyListener(R.id.galaxyCuatro, R.layout.galaxy_levels_v4);
+
     }
 
     private void configureGalaxyListener(int buttonId, int layoutId) {
