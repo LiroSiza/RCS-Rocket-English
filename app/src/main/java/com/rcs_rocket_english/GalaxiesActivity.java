@@ -21,11 +21,15 @@ public class GalaxiesActivity extends AppCompatActivity implements NavBarMenu.On
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        ImageButton ast1,ast2,ast3,ast4,ast5,ast6,ast7,ast8,ast9,ast10;
-
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.galaxy_levels_v1);
 
+        // Recibir el intent, dependiedno la galaxia
+        int layoutId = getIntent().getIntExtra("layout_id", R.layout.galaxy_levels_v1); // Default si no se pasa
+
+        // Configurar el layout dinámico
+        setContentView(layoutId);
+
+        ImageButton ast1,ast2,ast3,ast4,ast5,ast6,ast7,ast8,ast9,ast10;
         // Cambiar imagen del boton
         navBarMenu = findViewById(R.id.navbarMenu);
         navBarMenu.cambiarImagenPerfil(2); // Cambia la imagen a btn_profile_estado_1
@@ -41,6 +45,7 @@ public class GalaxiesActivity extends AppCompatActivity implements NavBarMenu.On
         //inicializar datos de lightning y hearts
         navBarMenu.setTextLightning("5");
         navBarMenu.setTextLightning("10");
+
 
         // Forzar modo oscuro
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);

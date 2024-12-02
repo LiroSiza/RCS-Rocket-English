@@ -4,10 +4,12 @@ import static androidx.core.content.ContextCompat.startActivity;
 
 import android.os.Bundle;
 import android.content.Intent;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.rcs_rocket_english.controls.Galaxy;
 import com.rcs_rocket_english.controls.NavigationMenu;
 import com.rcs_rocket_english.controls.NavBarMenu;
 
@@ -27,16 +29,29 @@ public class MainActivity extends AppCompatActivity
 
         //inicializar datos de lightning y hearts
         navBarMenu.setTextLightning("5");
-        navBarMenu.setTextLightning("10");
-
+        navBarMenu.setTextHearts("10");
 
         // Inicializa los controles
-        navBarMenu = findViewById(R.id.navbarMenu);
         navigationMenu = findViewById(R.id.navbarControl);
 
         // Registra el listener para ambos controles
         navBarMenu.setOnNavItemSelectedListener(this);
         navigationMenu.setOnNavItemSelectedListener(this);
+
+        // Configurar listeners para los botones de las galaxias
+        configureGalaxyListener(R.id.galaxyUno, R.layout.galaxy_levels_v1);
+        configureGalaxyListener(R.id.galaxyDos, R.layout.galaxy_levels_v2);
+        configureGalaxyListener(R.id.galaxyTres, R.layout.galaxy_levels_v3);
+        configureGalaxyListener(R.id.galaxyCuatro, R.layout.galaxy_levels_v4);
+    }
+
+    private void configureGalaxyListener(int buttonId, int layoutId) {
+        Galaxy button = findViewById(buttonId);
+        button.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, GalaxiesActivity.class);
+            intent.putExtra("layout_id", layoutId); // Layout correspondiente
+            startActivity(intent);
+        });
     }
 
     @Override
