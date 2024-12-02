@@ -27,24 +27,28 @@
             android:orientation="vertical">
 
             <com.rcs_rocket_english.controls.Galaxy
+                android:id="@+id/galaxyUno"
                 android:text="GALAXIA I - Grammar"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:layout_margin="10dp" />
 
             <com.rcs_rocket_english.controls.Galaxy
+                android:id="@+id/galaxyDos"
                 android:text="GALAXIA II - Reading"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:layout_margin="10dp" />
 
             <com.rcs_rocket_english.controls.Galaxy
+                android:id="@+id/galaxyTres"
                 android:text="GALAXIA III - Vocabulary"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:layout_margin="10dp" />
 
             <com.rcs_rocket_english.controls.Galaxy
+                android:id="@+id/galaxyCuatro"
                 android:text="GALAXIA IV - Listening"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
