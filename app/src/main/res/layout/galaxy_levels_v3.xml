@@ -6,12 +6,30 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <com.rcs_rocket_english.controls.NavBarMenu
+        android:id="@+id/navbarMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="GALAXIA III"
+        android:textSize="25sp"
+        android:layout_gravity="center_horizontal"
+        android:fontFamily="@font/agdasima_regular"
+        android:textColor="@color/white"
+        android:layout_marginTop="65dp"/>
+
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:scrollbars="none"
         android:fadeScrollbars="false"
-        android:layout_marginBottom="56dp">
+        android:layout_marginTop="95dp"
+        android:layout_marginBottom="75dp"
+        android:background="@drawable/background_one_galaxies">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -96,56 +114,57 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
+
             <ImageButton
-                android:id="@+id/asteroid_7"
-                android:layout_width="77dp"
+                android:id="@+id/planet_1"
+                android:layout_width="120dp"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="288dp"
-                android:layout_marginTop="1600dp"
+                android:layout_marginStart="68dp"
+                android:layout_marginTop="292dp"
                 android:adjustViewBounds="true"
                 android:background="@android:color/transparent"
                 android:scaleType="fitCenter"
-                android:src="@drawable/ateroid_seven"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:src="@drawable/planet_special_five"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageButton
-                android:id="@+id/asteroid_8"
-                android:layout_width="77dp"
+                android:id="@+id/planet_2"
+                android:layout_width="120dp"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="164dp"
-                android:layout_marginTop="1880dp"
+                android:layout_marginStart="228dp"
+                android:layout_marginTop="748dp"
                 android:adjustViewBounds="true"
                 android:background="@android:color/transparent"
                 android:scaleType="fitCenter"
-                android:src="@drawable/ateroid_eight"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:src="@drawable/planet_twentythree"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageButton
-                android:id="@+id/asteroid_9"
-                android:layout_width="77dp"
+                android:id="@+id/planet_3"
+                android:layout_width="120dp"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="48dp"
-                android:layout_marginTop="2180dp"
+                android:layout_marginStart="68dp"
+                android:layout_marginTop="1052dp"
                 android:adjustViewBounds="true"
                 android:background="@android:color/transparent"
                 android:scaleType="fitCenter"
-                android:src="@drawable/ateroid_one"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:src="@drawable/planet_special_six"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageButton
-                android:id="@+id/asteroid_10"
-                android:layout_width="77dp"
+                android:id="@+id/planet_4"
+                android:layout_width="120dp"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="164dp"
-                android:layout_marginTop="2500dp"
+                android:layout_marginStart="124dp"
+                android:layout_marginTop="1520dp"
                 android:adjustViewBounds="true"
                 android:background="@android:color/transparent"
                 android:scaleType="fitCenter"
-                android:src="@drawable/ateroid_ten"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:src="@drawable/planet_special_one"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
