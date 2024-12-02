@@ -76,11 +76,7 @@ public class NavBarMenu extends LinearLayout {
         public void onClick(View view) {
             if (listener != null) {
                 if (view == btnProfile) {
-                    listener.onNavItemSelected(R.id.btnChallenge);
-                } else if (view == lightning) {
-                    listener.onNavItemSelected(R.id.btnHome);
-                } else if (view == hearts) {
-                    listener.onNavItemSelected(R.id.btnSettings);
+                    listener.onNavItemSelected(R.id.btnProfile);
                 }
             }
         }

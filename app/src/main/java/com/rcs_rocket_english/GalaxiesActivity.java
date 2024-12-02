@@ -44,7 +44,7 @@ public class GalaxiesActivity extends AppCompatActivity implements NavBarMenu.On
 
         //inicializar datos de lightning y hearts
         navBarMenu.setTextLightning("5");
-        navBarMenu.setTextLightning("10");
+        navBarMenu.setTextHearts("10");
 
 
         // Forzar modo oscuro
@@ -90,6 +90,8 @@ public class GalaxiesActivity extends AppCompatActivity implements NavBarMenu.On
     public void onNavItemSelected(int itemId) {
         if (itemId == R.id.btnChallenge) {
             openActivity(ProfileActivity.class);
+        }else if (itemId == R.id.btnHome) {
+            finish();
         }
     }
 

@@ -57,15 +57,13 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onNavItemSelected(int itemId) {
         if (itemId == R.id.btnChallenge) {
-            openActivity(ProfileActivity.class);
+            // openActivity(ProfileActivity.class);
         } else if (itemId == R.id.btnHome) {
             // openActivity(HomeActivity.class);
         } else if (itemId == R.id.btnSettings) {
-            // openActivity(SettingsActivity.class);
+            openActivity(ProfileActivity.class);
         } else if (itemId == R.id.btnProfile) {
             openActivity(ProfileActivity.class);
-        } else {
-            Toast.makeText(this, "Opción desconocida", Toast.LENGTH_SHORT).show();
         }
     }
 
