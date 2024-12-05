@@ -24,6 +24,8 @@ public class ExerciseVersionTwo extends AppCompatActivity {
 
     private Button selectedButton = null; // Variable para almacenar el botón seleccionado
 
+    private String correctAnswer; // Variable para almacenar la respuesta correcta
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,6 +33,7 @@ public class ExerciseVersionTwo extends AppCompatActivity {
 
         // Se obtiene el nombre de la galaxia
         String galaxyName = getIntent().getStringExtra("galaxy_name");
+
 
         db = new DataBase(this); // Inicializar la base de datos
 
@@ -40,23 +43,24 @@ public class ExerciseVersionTwo extends AppCompatActivity {
         // Verificar si hay registros y agregarlos a la lista
         if (cursor != null && cursor.moveToFirst()) {
             do {
-                String title = cursor.getString(cursor.getColumnIndex("title"));
-                String subtitle = cursor.getString(cursor.getColumnIndex("subtitle"));
-                String text = cursor.getString(cursor.getColumnIndex("text"));
-                String option1 = cursor.getString(cursor.getColumnIndex("option1"));
-                String option2 = cursor.getString(cursor.getColumnIndex("option2"));
-                String option3 = cursor.getString(cursor.getColumnIndex("option3"));
-                String answer = cursor.getString(cursor.getColumnIndex("answer"));
+                // Obtener los valores del cursor y agregar los registros a la lista
+                @SuppressLint("Range") int id = cursor.getInt(cursor.getColumnIndex("id"));
+                @SuppressLint("Range") String title = cursor.getString(cursor.getColumnIndex("title"));
+                @SuppressLint("Range") String subtitle = cursor.getString(cursor.getColumnIndex("subtitle"));
+                @SuppressLint("Range") String text = cursor.getString(cursor.getColumnIndex("text"));
+                @SuppressLint("Range") String option1 = cursor.getString(cursor.getColumnIndex("option1"));
+                @SuppressLint("Range") String option2 = cursor.getString(cursor.getColumnIndex("option2"));
+                @SuppressLint("Range") String option3 = cursor.getString(cursor.getColumnIndex("option3"));
+                @SuppressLint("Range") String answer = cursor.getString(cursor.getColumnIndex("answer"));
 
                 // Crear un nuevo registro y agregarlo a la lista
-                Record record = new Record(title, subtitle, text, option1, option2, option3, answer);
-                records.add(record);
+                records.add(new Record(id, title, subtitle, text, option1, option2, option3, answer));
 
             } while (cursor.moveToNext());
         }
 
-        // Configurar la interfaz con el primer registro
-        setRecordData(currentRecordIndex);
+        // Cargar el primer registro
+        loadRecord(currentRecordIndex);
 
         // Configurar los botones de respuestas
         Button button1 = findViewById(R.id.respuesta1);
@@ -67,88 +71,90 @@ public class ExerciseVersionTwo extends AppCompatActivity {
         button2.setOnClickListener(v -> selectAnswer(button2));
         button3.setOnClickListener(v -> selectAnswer(button3));
 
+        // Configurar el botón de comprobar
         Button checkButton = findViewById(R.id.btnComprobar);
-        checkButton.setOnClickListener(v -> checkAnswer());
-    }
+        checkButton.setOnClickListener(v -> {
+            if (selectedButton != null) {
+                // Verificar si la respuesta seleccionada es correcta
+                if (selectedButton.getText().toString().equals(correctAnswer)) {
+                    // Respuesta correcta
+                    Toast.makeText(ExerciseVersionTwo.this, "¡Respuesta correcta!", Toast.LENGTH_SHORT).show();
 
-    // Método para seleccionar la respuesta
-    private void selectAnswer(Button selected) {
-        // Desmarcar el botón seleccionado previamente
-        if (selectedButton != null) {
-            selectedButton.setBackgroundColor(getResources().getColor(R.color.defaultAnswer)); // Cambiar a color original
-        }
+                    // Actualizar el progreso o realizar la siguiente acción
+                    if (currentRecordIndex < records.size() - 1) {
+                        // Si no es el último ejercicio, pasar al siguiente
+                        currentRecordIndex++;
+                        loadRecord(currentRecordIndex);
+                    } else {
+                        // Si es el último ejercicio, actualizar la galaxia
+                        db.updateProgressByName(galaxyName); // Actualizar el progreso en la base de datos
+                        finish(); // Cerrar la actividad
+                    }
 
-        // Marcar el nuevo botón seleccionado
-        selected.setBackgroundColor(getResources().getColor(R.color.selectedAnswer)); // Cambiar a color seleccionado
-        selectedButton = selected;
-    }
-
-    // Método para verificar la respuesta
-    private void checkAnswer() {
-        if (selectedButton != null) {
-            // Obtener la respuesta correcta del registro actual
-            String correctAnswer = records.get(currentRecordIndex).getAnswer();
-            String selectedAnswer = selectedButton.getText().toString();
-
-            // Verificar si la respuesta es correcta
-            if (selectedAnswer.equals(correctAnswer)) {
-                Toast.makeText(this, "¡Respuesta correcta!", Toast.LENGTH_SHORT).show();
-
-                // Desmarcar el botón seleccionado
-                selectedButton.setBackgroundColor(getResources().getColor(R.color.defaultAnswer)); // Cambiar a color original
-                selectedButton = null;
-
-                // Avanzar al siguiente registro si existe
-                if (currentRecordIndex < records.size() - 1) {
-                    currentRecordIndex++;
-                    setRecordData(currentRecordIndex);
                 } else {
-                    Toast.makeText(this, "¡Felicidades, completaste todos los niveles!", Toast.LENGTH_SHORT).show();
+                    // Respuesta incorrecta
+                    Toast.makeText(ExerciseVersionTwo.this, "Respuesta incorrecta", Toast.LENGTH_SHORT).show();
                 }
+
+                // Deseleccionar el botón
+                selectedButton.setBackgroundColor(getResources().getColor(R.color.defaultAnswer));
+                selectedButton = null;
             } else {
-                Toast.makeText(this, "Respuesta incorrecta, inténtalo de nuevo.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ExerciseVersionTwo.this, "Selecciona una respuesta", Toast.LENGTH_SHORT).show();
             }
-        } else {
-            Toast.makeText(this, "Por favor selecciona una respuesta", Toast.LENGTH_SHORT).show();
+        });
+    }
+
+    // Método para cargar un registro
+    private void loadRecord(int index) {
+        if (index >= 0 && index < records.size()) {
+            // Obtener el registro actual
+            Record currentRecord = records.get(index);
+
+            // Mostrar los datos en los TextViews
+            TextView titleTextView = findViewById(R.id.textViewTitle);
+            TextView subtitleTextView = findViewById(R.id.textViewSubtitle);
+            TextView textTextView = findViewById(R.id.textViewText);
+            Button option1Button = findViewById(R.id.respuesta1);
+            Button option2Button = findViewById(R.id.respuesta2);
+            Button option3Button = findViewById(R.id.respuesta3);
+
+            titleTextView.setText(currentRecord.getTitle());
+            subtitleTextView.setText(currentRecord.getSubtitle());
+            textTextView.setText(currentRecord.getText());
+            option1Button.setText(currentRecord.getOption1());
+            option2Button.setText(currentRecord.getOption2());
+            option3Button.setText(currentRecord.getOption3());
+
+            // Establecer la respuesta correcta
+            correctAnswer = currentRecord.getAnswer();
+
+            // Deseleccionar cualquier botón seleccionado anteriormente
+            option1Button.setBackgroundColor(getResources().getColor(R.color.defaultAnswer));
+            option2Button.setBackgroundColor(getResources().getColor(R.color.defaultAnswer));
+            option3Button.setBackgroundColor(getResources().getColor(R.color.defaultAnswer));
         }
     }
 
-    // Método para actualizar los TextView con los datos del registro actual
-    private void setRecordData(int recordIndex) {
-        // Obtener el registro actual
-        Record record = records.get(recordIndex);
+    // Método para seleccionar una respuesta
+    private void selectAnswer(Button button) {
+        if (selectedButton != null) {
+            // Deseleccionar el botón previamente seleccionado
+            selectedButton.setBackgroundColor(getResources().getColor(R.color.defaultAnswer));
+        }
 
-        // Obtener las referencias a los TextView
-        TextView titleTextView = findViewById(R.id.textView21);
-        TextView subtitleTextView = findViewById(R.id.textView22);
-        TextView textTextView = findViewById(R.id.textView23);
-
-        // Establecer los textos de los TextView
-        titleTextView.setText(record.getTitle());
-        subtitleTextView.setText(record.getSubtitle());
-        textTextView.setText(record.getText());
-
-        // Establecer las opciones de respuesta en los botones
-        Button button1 = findViewById(R.id.respuesta1);
-        Button button2 = findViewById(R.id.respuesta2);
-        Button button3 = findViewById(R.id.respuesta3);
-
-        button1.setText(record.getOption1());
-        button2.setText(record.getOption2());
-        button3.setText(record.getOption3());
+        // Seleccionar el nuevo botón
+        selectedButton = button;
+        selectedButton.setBackgroundColor(getResources().getColor(R.color.selectedAnswer));
     }
 
-    // Clase para representar un registro
-    private static class Record {
-        private final String title;
-        private final String subtitle;
-        private final String text;
-        private final String option1;
-        private final String option2;
-        private final String option3;
-        private final String answer;
+    // Clase Record para representar los registros de contE
+    private class Record {
+        private int id;
+        private String title, subtitle, text, option1, option2, option3, answer;
 
-        public Record(String title, String subtitle, String text, String option1, String option2, String option3, String answer) {
+        public Record(int id, String title, String subtitle, String text, String option1, String option2, String option3, String answer) {
+            this.id = id;
             this.title = title;
             this.subtitle = subtitle;
             this.text = text;
@@ -156,6 +162,10 @@ public class ExerciseVersionTwo extends AppCompatActivity {
             this.option2 = option2;
             this.option3 = option3;
             this.answer = answer;
+        }
+
+        public String getAnswer() {
+            return answer;
         }
 
         public String getTitle() {
@@ -180,10 +190,6 @@ public class ExerciseVersionTwo extends AppCompatActivity {
 
         public String getOption3() {
             return option3;
-        }
-
-        public String getAnswer() {
-            return answer;
         }
     }
 }

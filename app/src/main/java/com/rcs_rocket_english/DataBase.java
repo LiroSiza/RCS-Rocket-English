@@ -574,4 +574,19 @@ public class DataBase extends SQLiteOpenHelper {
     }
 
 
+    public void updateProgressByName(String galaxyName) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        // Consulta para obtener el id de la galaxia por su nombre
+        String query = "UPDATE galaxy SET progress = progress + 1 WHERE name = ?";
+
+        // Ejecutar la consulta
+        db.execSQL(query, new Object[]{galaxyName});
+
+        // Cerrar la base de datos
+        db.close();
+    }
+
+
+
 }
