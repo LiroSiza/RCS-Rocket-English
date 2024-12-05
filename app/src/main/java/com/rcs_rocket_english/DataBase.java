@@ -552,15 +552,17 @@ public class DataBase extends SQLiteOpenHelper {
     }
 
     @SuppressLint("Range")
-    public Cursor getFirstThreeRecordsByCategoryContE(String category) {
+    public Cursor getFirstThreeRecordsByCategoryContE(String category, int used) {
         SQLiteDatabase db = this.getReadableDatabase();
 
-        // Definir la consulta SQL
-        String query = "SELECT * FROM contE WHERE category = ? LIMIT 3";
+        // Definir la consulta SQL con filtro 'used'
+        String query = "SELECT * FROM contE WHERE category = ? AND used = ? LIMIT 3";
 
         // Ejecutar la consulta y obtener el resultado
-        return db.rawQuery(query, new String[]{category});
+        return db.rawQuery(query, new String[]{category, String.valueOf(used)});
     }
+
+
 
 
     public void markExercisesAsUsed(int recordId1, int recordId2, int recordId3) {

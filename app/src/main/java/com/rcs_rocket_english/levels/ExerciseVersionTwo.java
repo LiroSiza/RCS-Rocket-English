@@ -3,6 +3,7 @@ package com.rcs_rocket_english.levels;
 import android.annotation.SuppressLint;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -33,12 +34,18 @@ public class ExerciseVersionTwo extends AppCompatActivity {
 
         // Se obtiene el nombre de la galaxia
         String galaxyName = getIntent().getStringExtra("galaxy_name");
+        // En la actividad receptora:
+        boolean used = getIntent().getBooleanExtra("used", false); // Valor predeterminado false si no se pasa el extra
+        Log.d("Activity", "used value: " + used);
+
+        // Convertir el valor booleano de 'used' a 1 o 0
+        int usedValue = used ? 1 : 0;
 
 
         db = new DataBase(this); // Inicializar la base de datos
 
         // Llamar al método para obtener todos los registros de la tabla contE
-        Cursor cursor = db.getFirstThreeRecordsByCategoryContE(galaxyName);
+        Cursor cursor = db.getFirstThreeRecordsByCategoryContE(galaxyName, usedValue);
 
         // Verificar si hay registros y agregarlos a la lista
         if (cursor != null && cursor.moveToFirst()) {
@@ -88,6 +95,9 @@ public class ExerciseVersionTwo extends AppCompatActivity {
                     } else {
                         // Si es el último ejercicio, actualizar la galaxia
                         db.updateProgressByName(galaxyName); // Actualizar el progreso en la base de datos
+
+                        // Llamar a la función para marcar los tres ejercicios como "usados"
+                        db.markExercisesAsUsed(records.get(0).getId(), records.get(1).getId(), records.get(2).getId());
                         finish(); // Cerrar la actividad
                     }
 
@@ -162,6 +172,10 @@ public class ExerciseVersionTwo extends AppCompatActivity {
             this.option2 = option2;
             this.option3 = option3;
             this.answer = answer;
+        }
+
+        public int getId() {
+            return id;
         }
 
         public String getAnswer() {
