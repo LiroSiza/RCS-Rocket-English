@@ -50,6 +50,8 @@ public class GalaxiesActivity extends AppCompatActivity implements NavBarMenu.On
         navBarMenu = findViewById(R.id.navbarMenu);
         navigationMenu = findViewById(R.id.navbarControl);
 
+        navBarMenu.cambiarImagenPerfil(2);
+
         // Configurar los listeners de los menús
         navBarMenu.setOnNavItemSelectedListener(this);
         navigationMenu.setOnNavItemSelectedListener(this);
@@ -146,7 +148,7 @@ public class GalaxiesActivity extends AppCompatActivity implements NavBarMenu.On
     @Override
     public void onNavItemSelected(int itemId) {
         if (itemId == R.id.btnSettings) {
-            openActivity(ProfileActivity.class);
+            openActivity(SettingsActivity.class);
         } else if (itemId == R.id.btnHome || itemId == R.id.btnProfile) {
             finish();
         }
