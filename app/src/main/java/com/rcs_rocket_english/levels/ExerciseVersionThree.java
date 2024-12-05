@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.rcs_rocket_english.DataBase;
 import com.rcs_rocket_english.R;
+import com.rcs_rocket_english.SoundUtil;
 import com.rcs_rocket_english.exc2Objects.RecordVocabulary;
 
 import java.util.ArrayList;
@@ -162,6 +163,9 @@ public class ExerciseVersionThree extends AppCompatActivity {
 
                                 // Llamar a la función para marcar los tres ejercicios como "usados"
                                 db.markExercisesAsUsedVocabulary(records.get(0).getR1(), records.get(1).getR1(), records.get(2).getR1());
+
+                                // Reproduce sonido usando SoundUtil
+                                SoundUtil.playSound(ExerciseVersionThree.this, R.raw.sound_button_clcik_three);
                                 finish(); // Terminar actividad
                             } else {
                                 // Preparar siguiente ronda

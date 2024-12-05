@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.rcs_rocket_english.DataBase;
 import com.rcs_rocket_english.R;
+import com.rcs_rocket_english.SoundUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -100,7 +101,8 @@ public class ExerciseVersionTwo extends AppCompatActivity {
                         db.markExercisesAsUsed(records.get(0).getId(), records.get(1).getId(), records.get(2).getId());
                         finish(); // Cerrar la actividad
                     }
-
+                    // Reproduce sonido usando SoundUtil
+                    SoundUtil.playSound(this, R.raw.sound_button_click_two);
                 } else {
                     // Respuesta incorrecta
                     Toast.makeText(ExerciseVersionTwo.this, "Respuesta incorrecta", Toast.LENGTH_SHORT).show();
