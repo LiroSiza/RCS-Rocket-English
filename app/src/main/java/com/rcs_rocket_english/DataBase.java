@@ -711,7 +711,13 @@ public class DataBase extends SQLiteOpenHelper {
     }
 
 
+    public void markExercisesAsUsedVocabulary(String recordId1, String recordId2, String recordId3) {
+        SQLiteDatabase db = this.getWritableDatabase();
 
-
-
+        // Definir la consulta SQL para actualizar los registros
+        String query = "UPDATE contF SET used = 1 WHERE r1 IN (?, ?, ?)";
+        listContF();
+        // Ejecutar la consulta para actualizar los tres registros
+        db.execSQL(query, new Object[]{recordId1, recordId2, recordId3});
+    }
 }

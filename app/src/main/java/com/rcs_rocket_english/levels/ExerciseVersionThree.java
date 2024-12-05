@@ -28,6 +28,7 @@ public class ExerciseVersionThree extends AppCompatActivity {
     private Button btnComprobar;
     private int correctMatchesCount = 0;
     private int currentRound = 0;
+    String galaxyName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +41,8 @@ public class ExerciseVersionThree extends AppCompatActivity {
     }
 
     private void initializeDatabase() {
+        galaxyName = getIntent().getStringExtra("galaxy_name");
+
         db = new DataBase(this);
         boolean used = getIntent().getBooleanExtra("used", false);
         records = used ? db.getRecordsByCategoryContFUsed() : db.getRecordsByCategoryContF();
@@ -153,6 +156,13 @@ public class ExerciseVersionThree extends AppCompatActivity {
                                 Toast.makeText(ExerciseVersionThree.this,
                                         "¡Felicidades! Todos los ejercicios están completados.",
                                         Toast.LENGTH_SHORT).show();
+
+                                // Si es el último ejercicio, actualizar la galaxia
+                                db.updateProgressByName(galaxyName); // Actualizar el progreso en la base de datos
+
+                                // Llamar a la función para marcar los tres ejercicios como "usados"
+                                db.markExercisesAsUsedVocabulary(records.get(0).getR1(), records.get(1).getR1(), records.get(2).getR1());
+                                finish(); // Terminar actividad
                             } else {
                                 // Preparar siguiente ronda
                                 Toast.makeText(ExerciseVersionThree.this,
