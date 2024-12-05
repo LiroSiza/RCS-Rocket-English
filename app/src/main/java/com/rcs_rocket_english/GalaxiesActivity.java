@@ -12,7 +12,11 @@ import androidx.appcompat.app.AppCompatDelegate;
 
 import com.rcs_rocket_english.controls.NavBarMenu;
 import com.rcs_rocket_english.controls.NavigationMenu;
+import com.rcs_rocket_english.levels.ExerciseVersionFive;
+import com.rcs_rocket_english.levels.ExerciseVersionFour;
 import com.rcs_rocket_english.levels.ExerciseVersionOne;
+import com.rcs_rocket_english.levels.ExerciseVersionSix;
+import com.rcs_rocket_english.levels.ExerciseVersionThree;
 import com.rcs_rocket_english.levels.ExerciseVersionTwo;
 
 import java.util.Random;
@@ -78,10 +82,10 @@ public class GalaxiesActivity extends AppCompatActivity implements NavBarMenu.On
         // Verificar qué actividad abrir dependiendo de la galaxia y el asteroide
         switch (galaxyName) {
             case "Gramatica":
-                intent = new Intent(this, ExerciseVersionOne.class);
+                intent = new Intent(this, ExerciseVersionFive.class);
                 if (asteroidIndex % 2 == 0) {
                     // Ejemplo de alternar entre actividades
-                    intent = new Intent(this, ExerciseVersionTwo.class);
+                    intent = new Intent(this, ExerciseVersionFour.class);
                 }
                 break;
 
@@ -92,11 +96,11 @@ public class GalaxiesActivity extends AppCompatActivity implements NavBarMenu.On
             case "Vocabulario":
                 int randomActivity = random.nextInt(3); // Generar actividad aleatoria
                 if (randomActivity == 0) {
-                    intent = new Intent(this, ExerciseVersionOne.class);
+                    intent = new Intent(this, ExerciseVersionThree.class);
                 } else if (randomActivity == 1) {
-                    intent = new Intent(this, ExerciseVersionTwo.class);
+                    intent = new Intent(this, ExerciseVersionSix.class);
                 } else {
-                    intent = new Intent(this, ExerciseVersionOne.class); // Por defecto
+                    intent = new Intent(this, ExerciseVersionFour.class); // Por defecto
                 }
                 break;
 
@@ -106,6 +110,8 @@ public class GalaxiesActivity extends AppCompatActivity implements NavBarMenu.On
         }
 
         DataBase db = new DataBase(this);
+        //db.listContA();
+        //db.q();
         int progress = db.getProgressOfGalaxy(galaxyName);
         // Pasar información adicional al intent
         if(progress > asteroidIndex-1){
