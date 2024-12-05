@@ -15,6 +15,8 @@ public class ProfileActivity extends AppCompatActivity {
         // Boton de return a la actividad principal
         ImageButton btnReturn = findViewById(R.id.btnReturn);
         btnReturn.setOnClickListener(v -> {
+            // Reproduce sonido usando SoundUtil
+            SoundUtil.playSound(this, R.raw.sound_button_click_two);
             finish();
         });
     }
