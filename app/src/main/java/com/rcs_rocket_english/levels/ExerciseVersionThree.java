@@ -27,6 +27,7 @@ public class ExerciseVersionThree extends AppCompatActivity {
     private List<Button> allButtons = new ArrayList<>();
     private Button btnComprobar;
     private int correctMatchesCount = 0;
+    private int currentRound = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,34 +52,66 @@ public class ExerciseVersionThree extends AppCompatActivity {
     }
 
     private void initializeButtons() {
-        // Initialize all buttons
-        allButtons.add(findViewById(R.id.btnRespuesta1));
-        allButtons.add(findViewById(R.id.btnRespuesta2));
-        allButtons.add(findViewById(R.id.btnRespuesta3));
-        allButtons.add(findViewById(R.id.btnRespuesta4));
-        allButtons.add(findViewById(R.id.btnRespuesta5));
-        allButtons.add(findViewById(R.id.btnRespuesta6));
-        btnComprobar = findViewById(R.id.btnComprobar);
+        // Inicializar botones si aún no están inicializados
+        if (allButtons.isEmpty()) {
+            allButtons.add(findViewById(R.id.btnRespuesta1));
+            allButtons.add(findViewById(R.id.btnRespuesta2));
+            allButtons.add(findViewById(R.id.btnRespuesta3));
+            allButtons.add(findViewById(R.id.btnRespuesta4));
+            allButtons.add(findViewById(R.id.btnRespuesta5));
+            allButtons.add(findViewById(R.id.btnRespuesta6));
+            btnComprobar = findViewById(R.id.btnComprobar);
+        }
 
-        // Set button texts from the first record
-        RecordVocabulary currentRecord = records.get(0);
-        allButtons.get(0).setText(currentRecord.getR1());
-        allButtons.get(1).setText(currentRecord.getR2());
-        allButtons.get(2).setText(currentRecord.getR3());
-        allButtons.get(3).setText(currentRecord.getR4());
-        allButtons.get(4).setText(currentRecord.getR5());
-        allButtons.get(5).setText(currentRecord.getR6());
+        // Restablecer para una nueva ronda
+        correctMatchesCount = 0;
+        selectedButtons.clear();
+        correctPairs.clear();
 
-        // Shuffle button positions to randomize pair locations
-        Collections.shuffle(allButtons);
+        // Habilitar todos los botones
+        for (Button button : allButtons) {
+            button.setEnabled(true);
+            button.setBackgroundColor(Color.WHITE);
+        }
 
-        // Create correct pairs
+        // Deshabilitar botón de comprobación inicialmente
+        btnComprobar.setEnabled(false);
+
+        // Cargar datos de la ronda actual
+        loadRoundData();
+    }
+
+    private void loadRoundData() {
+        // Verificar si se han completado todas las rondas
+        if (currentRound >= records.size()) {
+            Toast.makeText(this, "Ejercicio completado", Toast.LENGTH_SHORT).show();
+            finish();
+            return;
+        }
+
+        RecordVocabulary currentRecord = records.get(currentRound);
+
+        // Crear una lista de todos los textos para mezclar
+        List<String> allTexts = new ArrayList<>();
+        allTexts.add(currentRecord.getR1());
+        allTexts.add(currentRecord.getR2());
+        allTexts.add(currentRecord.getR3());
+        allTexts.add(currentRecord.getR4());
+        allTexts.add(currentRecord.getR5());
+        allTexts.add(currentRecord.getR6());
+
+        // Mezclar los textos
+        Collections.shuffle(allTexts);
+
+        // Establecer textos de botones de la lista mezclada
+        for (int i = 0; i < allButtons.size(); i++) {
+            allButtons.get(i).setText(allTexts.get(i));
+        }
+
+        // Crear pares correctos
         correctPairs.put(currentRecord.getR1(), currentRecord.getR2());
         correctPairs.put(currentRecord.getR3(), currentRecord.getR4());
         correctPairs.put(currentRecord.getR5(), currentRecord.getR6());
-
-        // Initially disable check button
-        btnComprobar.setEnabled(false);
     }
 
     private void setupButtonListeners() {
@@ -87,22 +120,22 @@ public class ExerciseVersionThree extends AppCompatActivity {
             public void onClick(View v) {
                 Button selectedButton = (Button) v;
 
-                // Prevent re-selecting the same button
+                // Evitar volver a seleccionar el mismo botón
                 if (selectedButtons.containsKey(selectedButton)) {
                     return;
                 }
 
-                // Highlight selected button
+                // Resaltar botón seleccionado
                 selectedButton.setBackgroundColor(Color.YELLOW);
                 selectedButtons.put(selectedButton, selectedButton.getText().toString());
 
-                // Check for a pair when two buttons are selected
+                // Revisar par cuando se seleccionan dos botones
                 if (selectedButtons.size() == 2) {
                     Button[] buttons = selectedButtons.keySet().toArray(new Button[2]);
                     String value1 = selectedButtons.get(buttons[0]);
                     String value2 = selectedButtons.get(buttons[1]);
 
-                    // Verify if the pair is correct
+                    // Verificar si el par es correcto
                     if (isCorrectPair(value1, value2)) {
                         buttons[0].setBackgroundColor(Color.GREEN);
                         buttons[1].setBackgroundColor(Color.GREEN);
@@ -110,35 +143,48 @@ public class ExerciseVersionThree extends AppCompatActivity {
                         buttons[1].setEnabled(false);
                         correctMatchesCount++;
 
-                        // Check if all pairs are matched
+                        // Verificar si todos los pares están emparejados
                         if (correctMatchesCount == 3) {
-                            btnComprobar.setEnabled(true);
-                            Toast.makeText(ExerciseVersionThree.this,
-                                    "¡Felicidades! Todos los pares están correctos.",
-                                    Toast.LENGTH_SHORT).show();
+                            currentRound++;
+
+                            // Si se completaron todas las rondas, habilitar botón de comprobación
+                            if (currentRound >= records.size()) {
+                                btnComprobar.setEnabled(true);
+                                Toast.makeText(ExerciseVersionThree.this,
+                                        "¡Felicidades! Todos los ejercicios están completados.",
+                                        Toast.LENGTH_SHORT).show();
+                            } else {
+                                // Preparar siguiente ronda
+                                Toast.makeText(ExerciseVersionThree.this,
+                                        "Ronda completada. Continúa con la siguiente.",
+                                        Toast.LENGTH_SHORT).show();
+
+                                // Importante: llamar a initializeButtons para preparar la siguiente ronda
+                                initializeButtons();
+                            }
                         }
                     } else {
-                        // Reset unmatched buttons
+                        // Restablecer botones no coincidentes
                         buttons[0].setBackgroundColor(Color.WHITE);
                         buttons[1].setBackgroundColor(Color.WHITE);
                     }
 
-                    // Clear selection for next attempt
+                    // Limpiar selección para el siguiente intento
                     selectedButtons.clear();
                 }
             }
         };
 
-        // Set click listener for all buttons
+        // Establecer listener de clic para todos los botones
         for (Button button : allButtons) {
             button.setOnClickListener(buttonListener);
         }
 
-        // Set up check button
+        // Configurar botón de comprobación
         btnComprobar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Mark exercise as completed and close activity
+                // Marcar ejercicio como completado y cerrar actividad
                 setResult(RESULT_OK);
                 finish();
             }
