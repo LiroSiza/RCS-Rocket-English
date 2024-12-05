@@ -12,104 +12,128 @@ import androidx.appcompat.app.AppCompatDelegate;
 
 import com.rcs_rocket_english.controls.NavBarMenu;
 import com.rcs_rocket_english.controls.NavigationMenu;
+import com.rcs_rocket_english.levels.ExerciseVersionOne;
+import com.rcs_rocket_english.levels.ExerciseVersionTwo;
+
+import java.util.Random;
 
 public class GalaxiesActivity extends AppCompatActivity implements NavBarMenu.OnNavItemSelectedListener, NavigationMenu.OnNavItemSelectedListener {
 
     private NavBarMenu navBarMenu;
     private NavigationMenu navigationMenu;
-    private ImageButton lastPressedButton = null;  // Variable para guardar el último botón presionado
+    private String galaxyName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // Recibir el intent, dependiendo la galaxia
         int layoutId = getIntent().getIntExtra("layout_id", R.layout.galaxy_levels_v1); // Default si no se pasa
-        // Configurar el layout dinámico
         setContentView(layoutId);
+
+        // Obtener el nombre de la galaxia basado en el layout recibido
+        if (R.layout.galaxy_levels_v1 == layoutId) {
+            galaxyName = "Gramatica";
+        } else if (R.layout.galaxy_levels_v2 == layoutId) {
+            galaxyName = "Lectura";
+        } else if (R.layout.galaxy_levels_v3 == layoutId) {
+            galaxyName = "Vocabulario";
+        } else {
+            galaxyName = "Escucha";
+        }
 
         // Inicializa los controles
         navBarMenu = findViewById(R.id.navbarMenu);
         navigationMenu = findViewById(R.id.navbarControl);
 
-        // Registra el listener para ambos controles
+        // Configurar los listeners de los menús
         navBarMenu.setOnNavItemSelectedListener(this);
         navigationMenu.setOnNavItemSelectedListener(this);
 
         // Forzar modo oscuro
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
 
-        // Definir la animación de aumento y disminución de tamaño
-        ScaleAnimation scaleUp = new ScaleAnimation(
-                1.0f, 1.1f,  // Escala en X
-                1.0f, 1.1f,  // Escala en Y
-                ScaleAnimation.RELATIVE_TO_SELF, 0.5f, // Pivot en el centro
-                ScaleAnimation.RELATIVE_TO_SELF, 0.5f
-        );
-        scaleUp.setDuration(100);
-        scaleUp.setFillAfter(true);
+        // Configurar los botones de asteroides
+        configureAsteroidButtons();
+    }
 
-        ScaleAnimation scaleDown = new ScaleAnimation(
-                1.1f, 1.0f,  // Escala en X
-                1.1f, 1.0f,  // Escala en Y
-                ScaleAnimation.RELATIVE_TO_SELF, 0.5f,
-                ScaleAnimation.RELATIVE_TO_SELF, 0.5f
-        );
-        scaleDown.setDuration(100);
-        scaleDown.setFillAfter(true);
-
-        // Lista de IDs de los ImageButton
-        int[] buttonIds = {
-                R.id.asteroid_1, R.id.asteroid_2, R.id.asteroid_3, R.id.asteroid_4,
-                R.id.asteroid_5, R.id.asteroid_6
+    private void configureAsteroidButtons() {
+        // Lista de botones de asteroides
+        int[] asteroidIds = {
+                R.id.asteroid_1, R.id.asteroid_2, R.id.asteroid_3,
+                R.id.asteroid_4, R.id.asteroid_5, R.id.asteroid_6
         };
 
-        // Recorrer el array de botones y asignar el OnTouchListener a cada uno
-        for (int id : buttonIds) {
-            ImageButton button = findViewById(id);
-            setButtonTouchListener(button, scaleUp, scaleDown);  // Asignar listener
+        // Asignar listeners a cada botón de asteroide
+        for (int i = 0; i < asteroidIds.length; i++) {
+            ImageButton asteroidButton = findViewById(asteroidIds[i]);
+            int asteroidIndex = i + 1; // Índice del asteroide (1 a 6)
+            asteroidButton.setOnClickListener(v -> onAsteroidClicked(asteroidIndex));
         }
     }
 
-    // Función para asignar el OnTouchListener a un ImageButton
-    private void setButtonTouchListener(ImageButton button, ScaleAnimation scaleUp, ScaleAnimation scaleDown) {
-        button.setOnTouchListener((v, event) -> {
-            switch (event.getAction()) {
-                case MotionEvent.ACTION_DOWN:
-                    if (lastPressedButton != null && lastPressedButton != v) {
-                        // Si hay un botón presionado previamente, detener su animación
-                        lastPressedButton.clearAnimation();
-                    }
-                    v.startAnimation(scaleUp); // Aplicar la animación al presionar
-                    lastPressedButton = (ImageButton) v; // Guardar el botón actual
-                    break;
-                case MotionEvent.ACTION_UP:
-                case MotionEvent.ACTION_CANCEL:
-                    v.startAnimation(scaleDown); // Restaurar el tamaño al soltar
-                    v.performClick(); // Llamar a performClick para manejar correctamente el clic
-                    break;
-            }
-            return false;  // No interferir con otros eventos de toque
-        });
+    private void onAsteroidClicked(int asteroidIndex) {
+        Random random = new Random();
+        Intent intent;
+
+        // Verificar qué actividad abrir dependiendo de la galaxia y el asteroide
+        switch (galaxyName) {
+            case "Gramatica":
+                intent = new Intent(this, ExerciseVersionOne.class);
+                if (asteroidIndex % 2 == 0) {
+                    // Ejemplo de alternar entre actividades
+                    intent = new Intent(this, ExerciseVersionTwo.class);
+                }
+                break;
+
+            case "Lectura":
+                intent = new Intent(this, ExerciseVersionTwo.class);
+                break;
+
+            case "Vocabulario":
+                int randomActivity = random.nextInt(3); // Generar actividad aleatoria
+                if (randomActivity == 0) {
+                    intent = new Intent(this, ExerciseVersionOne.class);
+                } else if (randomActivity == 1) {
+                    intent = new Intent(this, ExerciseVersionTwo.class);
+                } else {
+                    intent = new Intent(this, ExerciseVersionOne.class); // Por defecto
+                }
+                break;
+
+            default:
+                intent = new Intent(this, ExerciseVersionOne.class); // Por defecto
+                break;
+        }
+
+        DataBase db = new DataBase(this);
+        int progress = db.getProgressOfGalaxy(galaxyName);
+        // Pasar información adicional al intent
+        if(progress > asteroidIndex-1){
+            intent.putExtra("used", true);
+        }else if(progress == asteroidIndex-1){
+            intent.putExtra("used", false);
+        }else{
+            return;
+        }
+
+        intent.putExtra("galaxy_name", galaxyName);
+        intent.putExtra("asteroid_index", asteroidIndex);
+
+        // Iniciar la actividad
+        startActivity(intent);
     }
 
     @Override
     public void onNavItemSelected(int itemId) {
         if (itemId == R.id.btnSettings) {
             openActivity(ProfileActivity.class);
-        } else if (itemId == R.id.btnHome) {
-            // Reproduce sonido usando SoundUtil
-            SoundUtil.playSound(this, R.raw.sound_button_click_two);
-            finish();
-        } else if (itemId == R.id.btnProfile) {
-            // Reproduce sonido usando SoundUtil
-            SoundUtil.playSound(this, R.raw.sound_button_click_two);
+        } else if (itemId == R.id.btnHome || itemId == R.id.btnProfile) {
             finish();
         }
     }
 
-    // Método para abrir actividades
     private void openActivity(Class<?> activityClass) {
-        Intent intent = new Intent(GalaxiesActivity.this, activityClass);
+        Intent intent = new Intent(this, activityClass);
         startActivity(intent);
     }
 }
