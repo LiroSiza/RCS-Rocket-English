@@ -13,26 +13,19 @@ import androidx.appcompat.app.AppCompatDelegate;
 import com.rcs_rocket_english.controls.NavBarMenu;
 import com.rcs_rocket_english.controls.NavigationMenu;
 
-public class GalaxiesActivity extends AppCompatActivity implements NavBarMenu.OnNavItemSelectedListener, NavigationMenu.OnNavItemSelectedListener{
+public class GalaxiesActivity extends AppCompatActivity implements NavBarMenu.OnNavItemSelectedListener, NavigationMenu.OnNavItemSelectedListener {
 
     private NavBarMenu navBarMenu;
     private NavigationMenu navigationMenu;
+    private ImageButton lastPressedButton = null;  // Variable para guardar el último botón presionado
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
-
-        // Recibir el intent, dependiedno la galaxia
+        // Recibir el intent, dependiendo la galaxia
         int layoutId = getIntent().getIntExtra("layout_id", R.layout.galaxy_levels_v1); // Default si no se pasa
-
         // Configurar el layout dinámico
         setContentView(layoutId);
-
-        ImageButton ast1,ast2,ast3,ast4,ast5,ast6,ast7,ast8,ast9,ast10;
-        // Cambiar imagen del boton
-        navBarMenu = findViewById(R.id.navbarMenu);
-        navBarMenu.cambiarImagenPerfil(2); // Cambia la imagen a btn_profile_estado_1
 
         // Inicializa los controles
         navBarMenu = findViewById(R.id.navbarMenu);
@@ -42,17 +35,8 @@ public class GalaxiesActivity extends AppCompatActivity implements NavBarMenu.On
         navBarMenu.setOnNavItemSelectedListener(this);
         navigationMenu.setOnNavItemSelectedListener(this);
 
-        //inicializar datos de lightning y hearts
-        navBarMenu.setTextLightning("5");
-        navBarMenu.setTextHearts("10");
-
-
         // Forzar modo oscuro
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-
-        // Control personalizado
-        //NavigationMenu navMenu = findViewById(R.id.navbarControl);
-        //navMenu.setOnNavItemSelectedListener(this);
 
         // Definir la animación de aumento y disminución de tamaño
         ScaleAnimation scaleUp = new ScaleAnimation(
@@ -86,15 +70,37 @@ public class GalaxiesActivity extends AppCompatActivity implements NavBarMenu.On
         }
     }
 
+    // Función para asignar el OnTouchListener a un ImageButton
+    private void setButtonTouchListener(ImageButton button, ScaleAnimation scaleUp, ScaleAnimation scaleDown) {
+        button.setOnTouchListener((v, event) -> {
+            switch (event.getAction()) {
+                case MotionEvent.ACTION_DOWN:
+                    if (lastPressedButton != null && lastPressedButton != v) {
+                        // Si hay un botón presionado previamente, detener su animación
+                        lastPressedButton.clearAnimation();
+                    }
+                    v.startAnimation(scaleUp); // Aplicar la animación al presionar
+                    lastPressedButton = (ImageButton) v; // Guardar el botón actual
+                    break;
+                case MotionEvent.ACTION_UP:
+                case MotionEvent.ACTION_CANCEL:
+                    v.startAnimation(scaleDown); // Restaurar el tamaño al soltar
+                    v.performClick(); // Llamar a performClick para manejar correctamente el clic
+                    break;
+            }
+            return false;  // No interferir con otros eventos de toque
+        });
+    }
+
     @Override
     public void onNavItemSelected(int itemId) {
         if (itemId == R.id.btnSettings) {
             openActivity(ProfileActivity.class);
-        }else if (itemId == R.id.btnHome) {
+        } else if (itemId == R.id.btnHome) {
             // Reproduce sonido usando SoundUtil
             SoundUtil.playSound(this, R.raw.sound_button_click_two);
             finish();
-        }else if (itemId == R.id.btnProfile) {
+        } else if (itemId == R.id.btnProfile) {
             // Reproduce sonido usando SoundUtil
             SoundUtil.playSound(this, R.raw.sound_button_click_two);
             finish();
@@ -105,22 +111,5 @@ public class GalaxiesActivity extends AppCompatActivity implements NavBarMenu.On
     private void openActivity(Class<?> activityClass) {
         Intent intent = new Intent(GalaxiesActivity.this, activityClass);
         startActivity(intent);
-    }
-
-    // Función para asignar el OnTouchListener a un ImageButton
-    private void setButtonTouchListener(ImageButton button, ScaleAnimation scaleUp, ScaleAnimation scaleDown) {
-        button.setOnTouchListener((v, event) -> {
-            switch (event.getAction()) {
-                case MotionEvent.ACTION_DOWN:
-                    v.startAnimation(scaleUp); // Aplicar la animación al presionar
-                    break;
-                case MotionEvent.ACTION_UP:
-                case MotionEvent.ACTION_CANCEL:
-                    v.startAnimation(scaleDown); // Restaurar el tamaño al soltar
-                    v.performClick(); // Llamar a performClick para manejar correctamente el clic
-                    break;
-            }
-            return false;  // No interferir con otros eventos de toque
-        });
     }
 }
