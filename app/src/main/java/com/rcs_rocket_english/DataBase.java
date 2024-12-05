@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 import com.rcs_rocket_english.excObjects.excA;
+import com.rcs_rocket_english.excObjects.excC;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -616,6 +617,44 @@ public class DataBase extends SQLiteOpenHelper {
         return exercises;
     }
 
+    @SuppressLint("Range")
+    public List<excC> getExcC(Boolean use, String galaxyName){
+        SQLiteDatabase db = this.getReadableDatabase();
+        List<excC> exercises = new ArrayList<>();
+        Cursor cursor;
+        // Query to select 3 exercises where 'used' is 0
+        if(use){
+            cursor = db.rawQuery("SELECT * FROM contC WHERE used = 1 LIMIT 3", null);
+        }else{
+            cursor = db.rawQuery("SELECT * FROM contC WHERE used = 0  LIMIT 3", null);
+        }
+
+        if (cursor != null && cursor.moveToFirst()) {
+            do {
+                // Retrieve data from the cursor
+                int id = cursor.getInt(cursor.getColumnIndex("id"));
+                int layoutId = cursor.getInt(cursor.getColumnIndex("layout_id"));
+                String category = cursor.getString(cursor.getColumnIndex("category"));
+                String title = cursor.getString(cursor.getColumnIndex("title"));
+                String text1 = cursor.getString(cursor.getColumnIndex("text1"));
+                String text2 = cursor.getString(cursor.getColumnIndex("text2"));
+                String answer1 = cursor.getString(cursor.getColumnIndex("answer1"));
+                String answer2 = cursor.getString(cursor.getColumnIndex("answer2"));
+                boolean used = cursor.getInt(cursor.getColumnIndex("used")) == 1;
+
+                // Create an excC object and add it to the list
+                exercises.add(new excC(id, layoutId, category, title, text1, text2, answer1, answer2, used));
+
+            } while (cursor.moveToNext());
+
+            cursor.close();
+        }
+
+        return exercises;
+
+
+    }
+
     public void increaseProgress(String galaxyName){
         SQLiteDatabase db = this.getWritableDatabase();
         int progress = getProgressOfGalaxy(galaxyName);
@@ -628,14 +667,22 @@ public class DataBase extends SQLiteOpenHelper {
 
     public void q(){
         SQLiteDatabase db = this.getWritableDatabase();
-        db.execSQL("UPDATE galaxy SET progress = 0 WHERE name = 'Gramatica'");
+        db.execSQL("UPDATE galaxy SET progress = 0");
         db.execSQL("UPDATE contA SET used = 0");
+        db.execSQL("UPDATE contC SET used = 0");
     }
 
     public void setUsedA(List<excA> excList){
         SQLiteDatabase db = this.getWritableDatabase();
         for (excA exc : excList) {
             db.execSQL("UPDATE contA SET used = 1 WHERE phrase = '" + exc.getPhrase()+"'");
+        }
+    }
+
+    public void setUsedC(List<excC> excList){
+        SQLiteDatabase db = this.getWritableDatabase();
+        for (excC exc : excList) {
+            db.execSQL("UPDATE contC SET used = 1 WHERE text1 = '" + exc.getText1()+"'");
         }
     }
 

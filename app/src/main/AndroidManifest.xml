@@ -41,6 +41,10 @@
             android:exported="false">
         </activity>
         <activity
+            android:name=".levels.ExerciseVersionFive"
+            android:exported="false">
+        </activity>
+        <activity
             android:name=".levels.ExerciseVersionThree"
             android:exported="false">
         </activity>
