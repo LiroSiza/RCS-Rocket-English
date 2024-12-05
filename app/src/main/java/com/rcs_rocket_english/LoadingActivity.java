@@ -12,6 +12,7 @@ public class LoadingActivity extends AppCompatActivity {
 
     private Handler handler = new Handler();
     private Runnable loadSecondGifRunnable;
+    private DataBase db; // Instancia de la base de datos
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +43,16 @@ public class LoadingActivity extends AppCompatActivity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
+                // Abrir form o iniciar app
+                // Inicializar la base de datos
+                db = new DataBase(LoadingActivity.this);
                 Intent intent = new Intent(LoadingActivity.this, MainActivity.class);
+                // Verificar si hay usuarios registrados
+                if (db.hasUsers()) { // Continuar con la app
+                    intent = new Intent(LoadingActivity.this, MainActivity.class);
+                } else { // Abrir el formulario
+                    intent = new Intent(LoadingActivity.this, LoginActivity.class);
+                }
                 startActivity(intent);
                 overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left); // Animacion de salida
                 finish(); // Cierra la actividad de carga

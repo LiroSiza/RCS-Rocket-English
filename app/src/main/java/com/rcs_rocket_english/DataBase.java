@@ -897,4 +897,20 @@ public class DataBase extends SQLiteOpenHelper {
             db.execSQL("UPDATE contB SET used = 1 WHERE text = '" + exc.getText()+"'");
         }
     }
+
+    public boolean hasUsers() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT COUNT(*) FROM user", null);
+
+        if (cursor != null && cursor.moveToFirst()) {
+            int count = cursor.getInt(0);  // Obtiene el valor de COUNT(*) (primer columna)
+            cursor.close();
+            return count > 0; // Si el conteo es mayor que 0, hay usuarios registrados
+        }
+
+        cursor.close();
+        return false; // Si no hay registros o si ocurrió algún error
+    }
+
 }
+
