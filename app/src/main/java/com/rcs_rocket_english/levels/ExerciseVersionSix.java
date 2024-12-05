@@ -59,7 +59,7 @@ public class ExerciseVersionSix extends AppCompatActivity {
     private void retrieveData() {
         DataBase db = new DataBase(this);
         this.excList = db.getExcB(used);
-        db.listContC();
+        db.listContB();
     }
 
     private void fillData() {

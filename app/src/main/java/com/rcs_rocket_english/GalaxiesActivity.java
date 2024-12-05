@@ -95,15 +95,22 @@ public class GalaxiesActivity extends AppCompatActivity implements NavBarMenu.On
 
             case "Vocabulario":
                 int randomActivity = random.nextInt(2); // Generar actividad aleatoria
-                if (randomActivity == 0) {
-                    intent = new Intent(this, ExerciseVersionThree.class);
-                } else if (randomActivity == 1) {
+                if (asteroidIndex == 1) {
                     intent = new Intent(this, ExerciseVersionSix.class);
-                } else {
-                    intent = new Intent(this, ExerciseVersionFour.class); // Por defecto
+                } else if (asteroidIndex == 2) {
+                    intent = new Intent(this, ExerciseVersionFour.class);
+                } else if(asteroidIndex == 3){
+                    intent = new Intent(this, ExerciseVersionThree.class); // Por defecto
+                }else{
+                    if(randomActivity == 0){
+                        intent = new Intent(this, ExerciseVersionThree.class);
+                    }else if(randomActivity == 1){
+                        intent = new Intent(this, ExerciseVersionSix.class);
+                    }else{
+                        intent = new Intent(this, ExerciseVersionFour.class);
+                    }
                 }
                 break;
-
             default:
                 intent = new Intent(this, ExerciseVersionOne.class); // Por defecto
                 break;

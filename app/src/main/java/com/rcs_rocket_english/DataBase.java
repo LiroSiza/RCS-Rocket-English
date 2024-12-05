@@ -700,7 +700,7 @@ public class DataBase extends SQLiteOpenHelper {
         String used;
 
         Cursor cursor = db.rawQuery("SELECT * FROM contF WHERE used = 1 LIMIT 3", null);
-
+        listContF();
         try {
             if (cursor != null && cursor.moveToFirst()) { // Verifica que hay registros
                 do {
