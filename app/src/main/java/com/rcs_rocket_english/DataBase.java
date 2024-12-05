@@ -1,6 +1,7 @@
 package com.rcs_rocket_english;
 
 import android.annotation.SuppressLint;
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -897,4 +898,70 @@ public class DataBase extends SQLiteOpenHelper {
             db.execSQL("UPDATE contB SET used = 1 WHERE text = '" + exc.getText()+"'");
         }
     }
+
+    public boolean hasUsers() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT COUNT(*) FROM user", null);
+
+        if (cursor != null && cursor.moveToFirst()) {
+            int count = cursor.getInt(0);  // Obtiene el valor de COUNT(*) (primer columna)
+            cursor.close();
+            return count > 0; // Si el conteo es mayor que 0, hay usuarios registrados
+        }
+
+        cursor.close();
+        return false; // Si no hay registros o si ocurrió algún error
+    }
+
+    public void registerUser(String name, String alias, String country) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        // Insertar los valores en la tabla
+        values.put("name", name);
+        values.put("alias", alias);
+        values.put("country", country);
+        values.put("experience", 0); // Inicializamos la experiencia en 0
+        values.put("completed_levels", 0); // Inicializamos los niveles completados en 0
+        values.put("signup_date", System.currentTimeMillis()); // Fecha actual en milisegundos
+
+        // Insertar el registro
+        long newRowId = db.insert("user", null, values);
+
+        // Validar si se insertó correctamente
+        if (newRowId == -1) {
+            Log.e("DataBase", "Error al insertar el usuario.");
+        } else {
+            Log.d("DataBase", "Usuario registrado con ID: " + newRowId);
+        }
+
+        db.close(); // Cerrar la conexión
+    }
+
+    @SuppressLint("Range")
+    public int getExperience() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        int experience = 0; // Valor por defecto en caso de que no se encuentre ningún usuario
+
+        // Realizar la consulta para obtener el primer usuario y su experiencia
+        Cursor cursor = db.rawQuery("SELECT experience FROM user LIMIT 1", null);
+
+        // Verificar si el cursor contiene datos
+        if (cursor != null && cursor.moveToFirst()) {
+            // Obtener el valor de 'experience' desde el cursor
+            experience = cursor.getInt(cursor.getColumnIndex("experience"));
+        } else {
+            Log.e("DataBase", "No se encontró el usuario en la base de datos.");
+        }
+
+        cursor.close(); // Cerrar el cursor
+        db.close(); // Cerrar la base de datos
+
+        return experience;
+    }
+
+
+
+
 }
+

@@ -10,11 +10,13 @@ import android.widget.LinearLayout;
 
 import androidx.annotation.Nullable;
 
+import com.rcs_rocket_english.DataBase;
 import com.rcs_rocket_english.R;
 
 import android.widget.TextView;
 
 public class NavBarMenu extends LinearLayout {
+
     ImageButton btnProfile;
     ImageView lightning, hearts;
     TextView textlightning, textHearts;
@@ -51,6 +53,7 @@ public class NavBarMenu extends LinearLayout {
     public void inicializar() {
         LayoutInflater li = LayoutInflater.from(getContext());
         li.inflate(R.layout.navbar_menu, this, true);
+
 
         btnProfile = findViewById(R.id.btnProfile);
         lightning = findViewById(R.id.lightning);

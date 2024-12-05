@@ -23,6 +23,7 @@ import java.util.Random;
 
 public class GalaxiesActivity extends AppCompatActivity implements NavBarMenu.OnNavItemSelectedListener, NavigationMenu.OnNavItemSelectedListener {
 
+    private DataBase db; // Instancia de la base de datos
     private NavBarMenu navBarMenu;
     private NavigationMenu navigationMenu;
     private String galaxyName;
@@ -58,6 +59,12 @@ public class GalaxiesActivity extends AppCompatActivity implements NavBarMenu.On
 
         // Configurar los botones de asteroides
         configureAsteroidButtons();
+
+        int exp = getExperience();
+        String expString = String.valueOf(exp);
+
+        //inicializar datos de lightning y hearts
+        navBarMenu.setTextLightning(expString);
     }
 
     private void configureAsteroidButtons() {
@@ -148,5 +155,12 @@ public class GalaxiesActivity extends AppCompatActivity implements NavBarMenu.On
     private void openActivity(Class<?> activityClass) {
         Intent intent = new Intent(this, activityClass);
         startActivity(intent);
+    }
+
+    public int getExperience(){
+        // Inicializar la instancia de la base de datos
+        db = new DataBase(this);
+        // Obtener la experiencia del primer usuario
+        return db.getExperience();
     }
 }
