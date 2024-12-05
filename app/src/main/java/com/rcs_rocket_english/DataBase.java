@@ -6,7 +6,12 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+import android.widget.Toast;
 
+import com.rcs_rocket_english.exc2Objects.RecordVocabulary;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 import java.util.Vector;
 
@@ -588,6 +593,124 @@ public class DataBase extends SQLiteOpenHelper {
         // Cerrar la base de datos
         db.close();
     }
+
+
+
+    @SuppressLint("Range")
+    public List<RecordVocabulary> getRecordsByCategoryContF() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        List<RecordVocabulary> records = new ArrayList<>(); // Lista para almacenar los registros
+
+        // Definir variables para almacenar los valores
+        int layout_id;
+        String category;
+        String title;
+        String r1;
+        String r2;
+        String r3;
+        String r4;
+        String r5;
+        String r6;
+        String used;
+
+        Cursor cursor = db.rawQuery("SELECT * FROM contF WHERE used = 0 LIMIT 3", null);
+
+        try {
+            if (cursor != null && cursor.moveToFirst()) { // Verifica que hay registros
+                do {
+                    // Obtener los valores del cursor
+                    layout_id = cursor.getInt(cursor.getColumnIndex("layout_id"));
+                    category = cursor.getString(cursor.getColumnIndex("category"));
+                    title = cursor.getString(cursor.getColumnIndex("title"));
+                    r1 = cursor.getString(cursor.getColumnIndex("r1"));
+                    r2 = cursor.getString(cursor.getColumnIndex("r2"));
+                    r3 = cursor.getString(cursor.getColumnIndex("r3"));
+                    r4 = cursor.getString(cursor.getColumnIndex("r4"));
+                    r5 = cursor.getString(cursor.getColumnIndex("r5"));
+                    r6 = cursor.getString(cursor.getColumnIndex("r6"));
+                    used = cursor.getString(cursor.getColumnIndex("used"));
+
+                    // Crear un objeto RecordVocabulary
+                    RecordVocabulary record = new RecordVocabulary(layout_id, category, title, r1, r2, r3, r4, r5, r6, used);
+
+                    // Añadir el objeto a la lista
+                    records.add(record);
+
+                    // Imprimir en el log para ver los datos
+                    Log.d("mine", "layout_id: " + layout_id + ", category: " + category + ", title: " + title +
+                            ", r1: " + r1 + ", r2: " + r2 + ", r3: " + r3 + ", r4: " + r4 + ", r5: " + r5 +
+                            ", r6: " + r6 + ", used: " + used);
+                } while (cursor.moveToNext()); // Moverse al siguiente registro
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            // Asegurarse de cerrar el cursor
+            if (cursor != null) {
+                cursor.close();
+            }
+        }
+        return records; // Retornar la lista de registros
+    }
+
+    @SuppressLint("Range")
+    public List<RecordVocabulary> getRecordsByCategoryContFUsed() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        List<RecordVocabulary> records = new ArrayList<>(); // Lista para almacenar los registros
+
+        // Definir variables para almacenar los valores
+        int layout_id;
+        String category;
+        String title;
+        String r1;
+        String r2;
+        String r3;
+        String r4;
+        String r5;
+        String r6;
+        String used;
+
+        Cursor cursor = db.rawQuery("SELECT * FROM contF WHERE used = 1 LIMIT 3", null);
+
+        try {
+            if (cursor != null && cursor.moveToFirst()) { // Verifica que hay registros
+                do {
+                    // Obtener los valores del cursor
+                    layout_id = cursor.getInt(cursor.getColumnIndex("layout_id"));
+                    category = cursor.getString(cursor.getColumnIndex("category"));
+                    title = cursor.getString(cursor.getColumnIndex("title"));
+                    r1 = cursor.getString(cursor.getColumnIndex("r1"));
+                    r2 = cursor.getString(cursor.getColumnIndex("r2"));
+                    r3 = cursor.getString(cursor.getColumnIndex("r3"));
+                    r4 = cursor.getString(cursor.getColumnIndex("r4"));
+                    r5 = cursor.getString(cursor.getColumnIndex("r5"));
+                    r6 = cursor.getString(cursor.getColumnIndex("r6"));
+                    used = cursor.getString(cursor.getColumnIndex("used"));
+
+                    // Crear un objeto RecordVocabulary
+                    RecordVocabulary record = new RecordVocabulary(layout_id, category, title, r1, r2, r3, r4, r5, r6, used);
+
+                    // Añadir el objeto a la lista
+                    records.add(record);
+
+                    // Imprimir en el log para ver los datos
+                    Log.d("mine", "layout_id: " + layout_id + ", category: " + category + ", title: " + title +
+                            ", r1: " + r1 + ", r2: " + r2 + ", r3: " + r3 + ", r4: " + r4 + ", r5: " + r5 +
+                            ", r6: " + r6 + ", used: " + used);
+                } while (cursor.moveToNext()); // Moverse al siguiente registro
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            // Asegurarse de cerrar el cursor
+            if (cursor != null) {
+                cursor.close();
+            }
+        }
+        return records; // Retornar la lista de registros
+    }
+
+
 
 
 

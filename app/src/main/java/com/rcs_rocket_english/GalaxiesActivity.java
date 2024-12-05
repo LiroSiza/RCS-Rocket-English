@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatDelegate;
 import com.rcs_rocket_english.controls.NavBarMenu;
 import com.rcs_rocket_english.controls.NavigationMenu;
 import com.rcs_rocket_english.levels.ExerciseVersionOne;
+import com.rcs_rocket_english.levels.ExerciseVersionThree;
 import com.rcs_rocket_english.levels.ExerciseVersionTwo;
 
 import java.util.Random;
@@ -90,13 +91,11 @@ public class GalaxiesActivity extends AppCompatActivity implements NavBarMenu.On
                 break;
 
             case "Vocabulario":
-                int randomActivity = random.nextInt(3); // Generar actividad aleatoria
+                int randomActivity = random.nextInt(2); // Generar actividad aleatoria
                 if (randomActivity == 0) {
-                    intent = new Intent(this, ExerciseVersionOne.class);
-                } else if (randomActivity == 1) {
-                    intent = new Intent(this, ExerciseVersionTwo.class);
+                    intent = new Intent(this, ExerciseVersionThree.class);
                 } else {
-                    intent = new Intent(this, ExerciseVersionOne.class); // Por defecto
+                    intent = new Intent(this, ExerciseVersionTwo.class);
                 }
                 break;
 
