@@ -16,6 +16,7 @@ import com.rcs_rocket_english.levels.ExerciseVersionFive;
 import com.rcs_rocket_english.levels.ExerciseVersionFour;
 import com.rcs_rocket_english.levels.ExerciseVersionOne;
 import com.rcs_rocket_english.levels.ExerciseVersionSix;
+import com.rcs_rocket_english.levels.ExerciseVersionThree;
 import com.rcs_rocket_english.levels.ExerciseVersionTwo;
 
 import java.util.Random;
@@ -95,11 +96,11 @@ public class GalaxiesActivity extends AppCompatActivity implements NavBarMenu.On
             case "Vocabulario":
                 int randomActivity = random.nextInt(3); // Generar actividad aleatoria
                 if (randomActivity == 0) {
-                    intent = new Intent(this, ExerciseVersionSix.class);
+                    intent = new Intent(this, ExerciseVersionThree.class);
                 } else if (randomActivity == 1) {
                     intent = new Intent(this, ExerciseVersionSix.class);
                 } else {
-                    intent = new Intent(this, ExerciseVersionSix.class); // Por defecto
+                    intent = new Intent(this, ExerciseVersionFour.class); // Por defecto
                 }
                 break;
 
