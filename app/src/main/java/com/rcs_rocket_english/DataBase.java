@@ -6,7 +6,9 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+import android.widget.Toast;
 
+import com.rcs_rocket_english.exc2Objects.RecordVocabulary;
 import com.rcs_rocket_english.excObjects.excA;
 import com.rcs_rocket_english.excObjects.excB;
 import com.rcs_rocket_english.excObjects.excC;
@@ -582,6 +584,172 @@ public class DataBase extends SQLiteOpenHelper {
 
         return progress;
     }
+
+    @SuppressLint("Range")
+    public Cursor getFirstThreeRecordsByCategoryContE(String category, int used) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        // Definir la consulta SQL con filtro 'used'
+        String query = "SELECT * FROM contE WHERE category = ? AND used = ? LIMIT 3";
+
+        // Ejecutar la consulta y obtener el resultado
+        return db.rawQuery(query, new String[]{category, String.valueOf(used)});
+    }
+
+
+
+
+    public void markExercisesAsUsed(int recordId1, int recordId2, int recordId3) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        // Definir la consulta SQL para actualizar los registros
+        String query = "UPDATE contE SET used = 1 WHERE id IN (?, ?, ?)";
+
+        // Ejecutar la consulta para actualizar los tres registros
+        db.execSQL(query, new Object[]{recordId1, recordId2, recordId3});
+    }
+
+
+    public void updateProgressByName(String galaxyName) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        // Consulta para obtener el id de la galaxia por su nombre
+        String query = "UPDATE galaxy SET progress = progress + 1 WHERE name = ?";
+
+        // Ejecutar la consulta
+        db.execSQL(query, new Object[]{galaxyName});
+
+        // Cerrar la base de datos
+        db.close();
+    }
+
+
+
+    @SuppressLint("Range")
+    public List<RecordVocabulary> getRecordsByCategoryContF() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        List<RecordVocabulary> records = new ArrayList<>(); // Lista para almacenar los registros
+
+        // Definir variables para almacenar los valores
+        int layout_id;
+        String category;
+        String title;
+        String r1;
+        String r2;
+        String r3;
+        String r4;
+        String r5;
+        String r6;
+        String used;
+
+        Cursor cursor = db.rawQuery("SELECT * FROM contF WHERE used = 0 LIMIT 3", null);
+
+        try {
+            if (cursor != null && cursor.moveToFirst()) { // Verifica que hay registros
+                do {
+                    // Obtener los valores del cursor
+                    layout_id = cursor.getInt(cursor.getColumnIndex("layout_id"));
+                    category = cursor.getString(cursor.getColumnIndex("category"));
+                    title = cursor.getString(cursor.getColumnIndex("title"));
+                    r1 = cursor.getString(cursor.getColumnIndex("r1"));
+                    r2 = cursor.getString(cursor.getColumnIndex("r2"));
+                    r3 = cursor.getString(cursor.getColumnIndex("r3"));
+                    r4 = cursor.getString(cursor.getColumnIndex("r4"));
+                    r5 = cursor.getString(cursor.getColumnIndex("r5"));
+                    r6 = cursor.getString(cursor.getColumnIndex("r6"));
+                    used = cursor.getString(cursor.getColumnIndex("used"));
+
+                    // Crear un objeto RecordVocabulary
+                    RecordVocabulary record = new RecordVocabulary(layout_id, category, title, r1, r2, r3, r4, r5, r6, used);
+
+                    // Añadir el objeto a la lista
+                    records.add(record);
+
+                    // Imprimir en el log para ver los datos
+                    Log.d("mine", "layout_id: " + layout_id + ", category: " + category + ", title: " + title +
+                            ", r1: " + r1 + ", r2: " + r2 + ", r3: " + r3 + ", r4: " + r4 + ", r5: " + r5 +
+                            ", r6: " + r6 + ", used: " + used);
+                } while (cursor.moveToNext()); // Moverse al siguiente registro
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            // Asegurarse de cerrar el cursor
+            if (cursor != null) {
+                cursor.close();
+            }
+        }
+        return records; // Retornar la lista de registros
+    }
+
+    @SuppressLint("Range")
+    public List<RecordVocabulary> getRecordsByCategoryContFUsed() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        List<RecordVocabulary> records = new ArrayList<>(); // Lista para almacenar los registros
+
+        // Definir variables para almacenar los valores
+        int layout_id;
+        String category;
+        String title;
+        String r1;
+        String r2;
+        String r3;
+        String r4;
+        String r5;
+        String r6;
+        String used;
+
+        Cursor cursor = db.rawQuery("SELECT * FROM contF WHERE used = 1 LIMIT 3", null);
+
+        try {
+            if (cursor != null && cursor.moveToFirst()) { // Verifica que hay registros
+                do {
+                    // Obtener los valores del cursor
+                    layout_id = cursor.getInt(cursor.getColumnIndex("layout_id"));
+                    category = cursor.getString(cursor.getColumnIndex("category"));
+                    title = cursor.getString(cursor.getColumnIndex("title"));
+                    r1 = cursor.getString(cursor.getColumnIndex("r1"));
+                    r2 = cursor.getString(cursor.getColumnIndex("r2"));
+                    r3 = cursor.getString(cursor.getColumnIndex("r3"));
+                    r4 = cursor.getString(cursor.getColumnIndex("r4"));
+                    r5 = cursor.getString(cursor.getColumnIndex("r5"));
+                    r6 = cursor.getString(cursor.getColumnIndex("r6"));
+                    used = cursor.getString(cursor.getColumnIndex("used"));
+
+                    // Crear un objeto RecordVocabulary
+                    RecordVocabulary record = new RecordVocabulary(layout_id, category, title, r1, r2, r3, r4, r5, r6, used);
+
+                    // Añadir el objeto a la lista
+                    records.add(record);
+
+                    // Imprimir en el log para ver los datos
+                    Log.d("mine", "layout_id: " + layout_id + ", category: " + category + ", title: " + title +
+                            ", r1: " + r1 + ", r2: " + r2 + ", r3: " + r3 + ", r4: " + r4 + ", r5: " + r5 +
+                            ", r6: " + r6 + ", used: " + used);
+                } while (cursor.moveToNext()); // Moverse al siguiente registro
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            // Asegurarse de cerrar el cursor
+            if (cursor != null) {
+                cursor.close();
+            }
+        }
+        return records; // Retornar la lista de registros
+    }
+
+
+    public void markExercisesAsUsedVocabulary(String recordId1, String recordId2, String recordId3) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        // Definir la consulta SQL para actualizar los registros
+        String query = "UPDATE contF SET used = 1 WHERE r1 IN (?, ?, ?)";
+        listContF();
+        // Ejecutar la consulta para actualizar los tres registros
+        db.execSQL(query, new Object[]{recordId1, recordId2, recordId3});
+    }
+
     @SuppressLint("Range")
     public List<excA> getExcA(Boolean use, String galaxyName) {
         SQLiteDatabase db = this.getReadableDatabase();
@@ -729,5 +897,4 @@ public class DataBase extends SQLiteOpenHelper {
             db.execSQL("UPDATE contB SET used = 1 WHERE text = '" + exc.getText()+"'");
         }
     }
-
 }

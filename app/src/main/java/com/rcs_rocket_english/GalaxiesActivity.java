@@ -94,7 +94,7 @@ public class GalaxiesActivity extends AppCompatActivity implements NavBarMenu.On
                 break;
 
             case "Vocabulario":
-                int randomActivity = random.nextInt(3); // Generar actividad aleatoria
+                int randomActivity = random.nextInt(2); // Generar actividad aleatoria
                 if (randomActivity == 0) {
                     intent = new Intent(this, ExerciseVersionThree.class);
                 } else if (randomActivity == 1) {
