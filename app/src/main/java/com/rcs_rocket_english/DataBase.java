@@ -134,7 +134,7 @@ public class DataBase extends SQLiteOpenHelper {
 
         //insercion de los datos
 
-        db.execSQL("INSERT INTO galaxy (name, description, progress) VALUES ('Gramática', 'Verbos, adjetivos, preposiciones y pronombres', 0)");
+        db.execSQL("INSERT INTO galaxy (name, description, progress) VALUES ('Gramatica', 'Verbos, adjetivos, preposiciones y pronombres', 0)");
         db.execSQL("INSERT INTO galaxy (name, description, progress) VALUES ('Lectura', 'Lectura de textos', 0)");
         db.execSQL("INSERT INTO galaxy (name, description, progress) VALUES ('Vocabulario', 'Palabras y frases de uso diario', 0)");
         db.execSQL("INSERT INTO galaxy (name, description, progress) VALUES ('Escucha', 'Escucha y analiza conversaciones', 0)");
@@ -531,5 +531,23 @@ public class DataBase extends SQLiteOpenHelper {
                 db.execSQL("INSERT INTO asteroids (galaxy_id, active, layout_id) VALUES (" + i + ", " + active + ", " + layout_id + ")");
             }
         }
+    }
+    @SuppressLint("Range")
+    // Método para obtener el progreso de una galaxia específica
+    public int getProgressOfGalaxy(String galaxyName) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        int progress = -1;  // Valor predeterminado si no se encuentra la galaxia
+
+        // Definir la consulta
+        String query = "SELECT progress FROM galaxy WHERE name = ?";
+        Cursor cursor = db.rawQuery(query, new String[]{galaxyName});
+
+        // Si encontramos la galaxia, obtenemos el progreso
+        if (cursor != null && cursor.moveToFirst()) {
+            progress = cursor.getInt(cursor.getColumnIndex("progress"));
+            cursor.close();
+        }
+
+        return progress;
     }
 }
