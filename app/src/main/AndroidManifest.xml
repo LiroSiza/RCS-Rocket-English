@@ -48,6 +48,10 @@
             android:name=".GalaxiesActivity"
             android:exported="false">
         </activity>
+        <activity
+            android:name=".SettingsActivity"
+            android:exported="false">
+        </activity>
     </application>
 
 </manifest>

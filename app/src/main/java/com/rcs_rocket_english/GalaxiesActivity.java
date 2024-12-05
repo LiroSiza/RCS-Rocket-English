@@ -91,8 +91,12 @@ public class GalaxiesActivity extends AppCompatActivity implements NavBarMenu.On
         if (itemId == R.id.btnSettings) {
             openActivity(ProfileActivity.class);
         }else if (itemId == R.id.btnHome) {
+            // Reproduce sonido usando SoundUtil
+            SoundUtil.playSound(this, R.raw.sound_button_click_two);
             finish();
         }else if (itemId == R.id.btnProfile) {
+            // Reproduce sonido usando SoundUtil
+            SoundUtil.playSound(this, R.raw.sound_button_click_two);
             finish();
         }
     }
