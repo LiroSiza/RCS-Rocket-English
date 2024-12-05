@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 import com.rcs_rocket_english.excObjects.excA;
+import com.rcs_rocket_english.excObjects.excB;
 import com.rcs_rocket_english.excObjects.excC;
 
 import java.util.ArrayList;
@@ -655,6 +656,42 @@ public class DataBase extends SQLiteOpenHelper {
 
     }
 
+    @SuppressLint("Range")
+    public List<excB> getExcB(Boolean use) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        List<excB> exercises = new ArrayList<>();
+        Cursor cursor;
+
+        // Query to select exercises where 'used' is 0 or 1
+        if (use) {
+            cursor = db.rawQuery("SELECT * FROM contB WHERE used = 1 LIMIT 3", null);
+        } else {
+            cursor = db.rawQuery("SELECT * FROM contB WHERE used = 0 LIMIT 3", null);
+        }
+
+        if (cursor != null && cursor.moveToFirst()) {
+            do {
+                // Retrieve data from the cursor
+                int id = cursor.getInt(cursor.getColumnIndex("id"));
+                int layoutId = cursor.getInt(cursor.getColumnIndex("layout_id"));
+                String category = cursor.getString(cursor.getColumnIndex("category"));
+                String title = cursor.getString(cursor.getColumnIndex("title"));
+                String phrase = cursor.getString(cursor.getColumnIndex("phrase"));
+                String text = cursor.getString(cursor.getColumnIndex("text"));
+                boolean used = cursor.getInt(cursor.getColumnIndex("used")) > 0; // Convert 0/1 to boolean
+
+                // Create an excB object and add it to the list
+                exercises.add(new excB(id, layoutId, category, title, phrase, text, used));
+
+            } while (cursor.moveToNext());
+
+            cursor.close();
+        }
+
+        return exercises;
+    }
+
+
     public void increaseProgress(String galaxyName){
         SQLiteDatabase db = this.getWritableDatabase();
         int progress = getProgressOfGalaxy(galaxyName);
@@ -683,6 +720,13 @@ public class DataBase extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         for (excC exc : excList) {
             db.execSQL("UPDATE contC SET used = 1 WHERE text1 = '" + exc.getText1()+"'");
+        }
+    }
+
+    public void setUsedB(List<excB> excList){
+        SQLiteDatabase db = this.getWritableDatabase();
+        for (excB exc : excList) {
+            db.execSQL("UPDATE contB SET used = 1 WHERE text = '" + exc.getText()+"'");
         }
     }
 
