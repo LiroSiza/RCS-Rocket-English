@@ -550,4 +550,28 @@ public class DataBase extends SQLiteOpenHelper {
 
         return progress;
     }
+
+    @SuppressLint("Range")
+    public Cursor getFirstThreeRecordsByCategoryContE(String category) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        // Definir la consulta SQL
+        String query = "SELECT * FROM contE WHERE category = ? LIMIT 3";
+
+        // Ejecutar la consulta y obtener el resultado
+        return db.rawQuery(query, new String[]{category});
+    }
+
+
+    public void markExercisesAsUsed(int recordId1, int recordId2, int recordId3) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        // Definir la consulta SQL para actualizar los registros
+        String query = "UPDATE contE SET used = 1 WHERE id IN (?, ?, ?)";
+
+        // Ejecutar la consulta para actualizar los tres registros
+        db.execSQL(query, new Object[]{recordId1, recordId2, recordId3});
+    }
+
+
 }

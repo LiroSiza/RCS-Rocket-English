@@ -51,7 +51,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView22" />
 
     <Button
-        android:id="@+id/button10"
+        android:id="@+id/respuesta1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
@@ -66,6 +66,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
+        android:id="@+id/respuesta2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
@@ -80,6 +81,7 @@
 
 
     <Button
+        android:id="@+id/respuesta3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
@@ -94,6 +96,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
+        android:id="@+id/btnComprobar"
         style="@style/CustomButtonViewExercise"
         android:layout_marginBottom="28dp"
         android:text="COMPROBAR"
