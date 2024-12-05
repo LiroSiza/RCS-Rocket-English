@@ -9,6 +9,9 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.rcs_rocket_english.exc2Objects.RecordVocabulary;
+import com.rcs_rocket_english.excObjects.excA;
+import com.rcs_rocket_english.excObjects.excB;
+import com.rcs_rocket_english.excObjects.excC;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -182,6 +185,32 @@ public class DataBase extends SQLiteOpenHelper {
         db.execSQL("INSERT INTO contA (layout_id, category, title, phrase, option1, option2, option3, answer, used) VALUES (6, 'Vocabulario', 'Selecciona la traducción correcta', 'montaña', 'mountain', 'mound', 'mint', 'mountain', 0)");
         db.execSQL("INSERT INTO contA (layout_id, category, title, phrase, option1, option2, option3, answer, used) VALUES (6, 'Vocabulario', 'Selecciona la traducción correcta', 'árbol', 'tree', 'treat', 'three', 'tree', 0)");
 
+        db.execSQL("INSERT INTO contA (layout_id, category, title, phrase, option1, option2, option3, answer, used) VALUES (6, 'Gramatica', 'Selecciona la clasificación correcta', 'ran', 'Present', 'Past', 'Future', 'Past', 0)");
+        db.execSQL("INSERT INTO contA (layout_id, category, title, phrase, option1, option2, option3, answer, used) VALUES (6, 'Gramatica', 'Selecciona la clasificación correcta', 'ran', 'Present', 'Past', 'Future', 'Past', 0)");
+        db.execSQL("INSERT INTO contA (layout_id, category, title, phrase, option1, option2, option3, answer, used) VALUES (7, 'Gramatica', 'Selecciona la clasificación correcta', 'eat', 'Present', 'Past', 'Future', 'Present', 0)");
+        db.execSQL("INSERT INTO contA (layout_id, category, title, phrase, option1, option2, option3, answer, used) VALUES (8, 'Gramatica', 'Selecciona la clasificación correcta', 'played', 'Present', 'Past', 'Future', 'Past', 0)");
+        db.execSQL("INSERT INTO contA (layout_id, category, title, phrase, option1, option2, option3, answer, used) VALUES (9, 'Gramatica', 'Selecciona la clasificación correcta', 'will go', 'Present', 'Past', 'Future', 'Future', 0)");
+        db.execSQL("INSERT INTO contA (layout_id, category, title, phrase, option1, option2, option3, answer, used) VALUES (10, 'Gramatica', 'Selecciona la clasificación correcta', 'was', 'Present', 'Past', 'Future', 'Past', 0)");
+        db.execSQL("INSERT INTO contA (layout_id, category, title, phrase, option1, option2, option3, answer, used) VALUES (11, 'Gramatica', 'Selecciona la clasificación correcta', 'is playing', 'Present', 'Past', 'Future', 'Present', 0)");
+        db.execSQL("INSERT INTO contA (layout_id, category, title, phrase, option1, option2, option3, answer, used) VALUES (12, 'Gramatica', 'Selecciona la clasificación correcta', 'played', 'Present', 'Past', 'Future', 'Past', 0)");
+        db.execSQL("INSERT INTO contA (layout_id, category, title, phrase, option1, option2, option3, answer, used) VALUES (13, 'Gramatica', 'Selecciona la clasificación correcta', 'will eat', 'Present', 'Past', 'Future', 'Future', 0)");
+
+        db.execSQL("INSERT INTO contA (layout_id, category, title, phrase, option1, option2, option3, answer, used) VALUES (6, 'Gramatica', 'Selecciona la clasificación correcta', 'had eaten', 'Present Perfect', 'Past Perfect', 'Future Perfect', 'Past Perfect', 0)");
+        db.execSQL("INSERT INTO contA (layout_id, category, title, phrase, option1, option2, option3, answer, used) VALUES (7, 'Gramatica', 'Selecciona la clasificación correcta', 'will have finished', 'Present Perfect', 'Past Perfect', 'Future Perfect', 'Future Perfect', 0)");
+        db.execSQL("INSERT INTO contA (layout_id, category, title, phrase, option1, option2, option3, answer, used) VALUES (8, 'Gramatica', 'Selecciona la clasificación correcta', 'had been running', 'Present Perfect Continuous', 'Past Perfect Continuous', 'Future Perfect Continuous', 'Past Perfect Continuous', 0)");
+        db.execSQL("INSERT INTO contA (layout_id, category, title, phrase, option1, option2, option3, answer, used) VALUES (9, 'Gramatica', 'Selecciona la clasificación correcta', 'will have been studying', 'Present Perfect Continuous', 'Past Perfect Continuous', 'Future Perfect Continuous', 'Future Perfect Continuous', 0)");
+        db.execSQL("INSERT INTO contA (layout_id, category, title, phrase, option1, option2, option3, answer, used) VALUES (10, 'Gramatica', 'Selecciona la clasificación correcta', 'would speak', 'Present', 'Past', 'Conditional', 'Conditional', 0)");
+        db.execSQL("INSERT INTO contA (layout_id, category, title, phrase, option1, option2, option3, answer, used) VALUES (11, 'Gramatica', 'Selecciona la clasificación correcta', 'has been', 'Present', 'Past', 'Present Perfect', 'Present Perfect', 0)");
+        db.execSQL("INSERT INTO contA (layout_id, category, title, phrase, option1, option2, option3, answer, used) VALUES (12, 'Gramatica', 'Selecciona la clasificación correcta', 'were going', 'Present Continuous', 'Past Continuous', 'Future Continuous', 'Past Continuous', 0)");
+        db.execSQL("INSERT INTO contA (layout_id, category, title, phrase, option1, option2, option3, answer, used) VALUES (13, 'Gramatica', 'Selecciona la clasificación correcta', 'will be working', 'Present Continuous', 'Past Continuous', 'Future Continuous', 'Future Continuous', 0)");
+        db.execSQL("INSERT INTO contA (layout_id, category, title, phrase, option1, option2, option3, answer, used) VALUES (14, 'Gramatica', 'Selecciona la clasificación correcta', 'had been studying', 'Present Perfect Continuous', 'Past Perfect Continuous', 'Future Perfect Continuous', 'Past Perfect Continuous', 0)");
+        db.execSQL("INSERT INTO contA (layout_id, category, title, phrase, option1, option2, option3, answer, used) VALUES (15, 'Gramatica', 'Selecciona la clasificación correcta', 'will have been working', 'Present Perfect Continuous', 'Past Perfect Continuous', 'Future Perfect Continuous', 'Future Perfect Continuous', 0)");
+        db.execSQL("INSERT INTO contA (layout_id, category, title, phrase, option1, option2, option3, answer, used) VALUES (16, 'Gramatica', 'Selecciona la clasificación correcta', 'would have gone', 'Present Perfect', 'Past Perfect', 'Conditional Perfect', 'Conditional Perfect', 0)");
+        db.execSQL("INSERT INTO contA (layout_id, category, title, phrase, option1, option2, option3, answer, used) VALUES (17, 'Gramatica', 'Selecciona la clasificación correcta', 'have been eating', 'Present Perfect Continuous', 'Past Perfect Continuous', 'Future Perfect Continuous', 'Present Perfect Continuous', 0)");
+
+
+
+
         db.execSQL("INSERT INTO contB (layout_id, category, title, phrase, text, used) VALUES (2, 'Vocabulario', 'Traduce el texto', 'El cielo es azul', 'The sky is blue', 0)");
         db.execSQL("INSERT INTO contB (layout_id, category, title, phrase, text, used) VALUES (2, 'Vocabulario', 'Traduce el texto', 'Ella esta leyendo un libro', 'She is reading a book', 0)");
         db.execSQL("INSERT INTO contB (layout_id, category, title, phrase, text, used) VALUES (2, 'Vocabulario', 'Traduce el texto', 'Cierra la puerta', 'Close the door', 0)");
@@ -290,7 +319,7 @@ public class DataBase extends SQLiteOpenHelper {
     @SuppressLint("Range")
     public void listaDatosGalaxy() {
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM galaxy ORDER BY id", null);
+        Cursor cursor = db.rawQuery("SELECT * FROM galaxy order by id", null);
         while (cursor.moveToNext()) {
             // Get column values by their names or indices
              int id = cursor.getInt(cursor.getColumnIndex("id"));
@@ -719,5 +748,153 @@ public class DataBase extends SQLiteOpenHelper {
         listContF();
         // Ejecutar la consulta para actualizar los tres registros
         db.execSQL(query, new Object[]{recordId1, recordId2, recordId3});
+    }
+
+    @SuppressLint("Range")
+    public List<excA> getExcA(Boolean use, String galaxyName) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        List<excA> exercises = new ArrayList<>();
+        Cursor cursor;
+        // Query to select 3 exercises where 'used' is 0
+        if(use){
+             cursor = db.rawQuery("SELECT * FROM contA WHERE used = 1 LIMIT 3", null);
+        }else{
+             cursor = db.rawQuery("SELECT * FROM contA WHERE used = 0  LIMIT 3", null);
+        }
+
+        if (cursor != null && cursor.moveToFirst()) {
+            do {
+                // Retrieve data from the cursor
+                int layoutId = cursor.getInt(cursor.getColumnIndex("layout_id"));
+                String category = cursor.getString(cursor.getColumnIndex("category"));
+                String title = cursor.getString(cursor.getColumnIndex("title"));
+                String phrase = cursor.getString(cursor.getColumnIndex("phrase"));
+                String option1 = cursor.getString(cursor.getColumnIndex("option1"));
+                String option2 = cursor.getString(cursor.getColumnIndex("option2"));
+                String option3 = cursor.getString(cursor.getColumnIndex("option3"));
+                String answer = cursor.getString(cursor.getColumnIndex("answer"));
+                int used = cursor.getInt(cursor.getColumnIndex("used"));
+
+                // Create an Exercise object and add it to the list
+                exercises.add(new excA(layoutId, category, title, phrase, option1, option2, option3, answer, used));
+
+            } while (cursor.moveToNext());
+
+            cursor.close();
+        }
+
+        return exercises;
+    }
+
+    @SuppressLint("Range")
+    public List<excC> getExcC(Boolean use, String galaxyName){
+        SQLiteDatabase db = this.getReadableDatabase();
+        List<excC> exercises = new ArrayList<>();
+        Cursor cursor;
+        // Query to select 3 exercises where 'used' is 0
+        if(use){
+            cursor = db.rawQuery("SELECT * FROM contC WHERE used = 1 LIMIT 3", null);
+        }else{
+            cursor = db.rawQuery("SELECT * FROM contC WHERE used = 0  LIMIT 3", null);
+        }
+
+        if (cursor != null && cursor.moveToFirst()) {
+            do {
+                // Retrieve data from the cursor
+                int id = cursor.getInt(cursor.getColumnIndex("id"));
+                int layoutId = cursor.getInt(cursor.getColumnIndex("layout_id"));
+                String category = cursor.getString(cursor.getColumnIndex("category"));
+                String title = cursor.getString(cursor.getColumnIndex("title"));
+                String text1 = cursor.getString(cursor.getColumnIndex("text1"));
+                String text2 = cursor.getString(cursor.getColumnIndex("text2"));
+                String answer1 = cursor.getString(cursor.getColumnIndex("answer1"));
+                String answer2 = cursor.getString(cursor.getColumnIndex("answer2"));
+                boolean used = cursor.getInt(cursor.getColumnIndex("used")) == 1;
+
+                // Create an excC object and add it to the list
+                exercises.add(new excC(id, layoutId, category, title, text1, text2, answer1, answer2, used));
+
+            } while (cursor.moveToNext());
+
+            cursor.close();
+        }
+
+        return exercises;
+
+
+    }
+
+    @SuppressLint("Range")
+    public List<excB> getExcB(Boolean use) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        List<excB> exercises = new ArrayList<>();
+        Cursor cursor;
+
+        // Query to select exercises where 'used' is 0 or 1
+        if (use) {
+            cursor = db.rawQuery("SELECT * FROM contB WHERE used = 1 LIMIT 3", null);
+        } else {
+            cursor = db.rawQuery("SELECT * FROM contB WHERE used = 0 LIMIT 3", null);
+        }
+
+        if (cursor != null && cursor.moveToFirst()) {
+            do {
+                // Retrieve data from the cursor
+                int id = cursor.getInt(cursor.getColumnIndex("id"));
+                int layoutId = cursor.getInt(cursor.getColumnIndex("layout_id"));
+                String category = cursor.getString(cursor.getColumnIndex("category"));
+                String title = cursor.getString(cursor.getColumnIndex("title"));
+                String phrase = cursor.getString(cursor.getColumnIndex("phrase"));
+                String text = cursor.getString(cursor.getColumnIndex("text"));
+                boolean used = cursor.getInt(cursor.getColumnIndex("used")) > 0; // Convert 0/1 to boolean
+
+                // Create an excB object and add it to the list
+                exercises.add(new excB(id, layoutId, category, title, phrase, text, used));
+
+            } while (cursor.moveToNext());
+
+            cursor.close();
+        }
+
+        return exercises;
+    }
+
+
+    public void increaseProgress(String galaxyName){
+        SQLiteDatabase db = this.getWritableDatabase();
+        int progress = getProgressOfGalaxy(galaxyName);
+        if(progress < 6){
+            progress++;
+            db.execSQL("UPDATE galaxy SET progress = " + progress + " WHERE name = '" + galaxyName + "'");
+        }
+
+    }
+
+    public void q(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL("UPDATE galaxy SET progress = 0");
+        db.execSQL("UPDATE contA SET used = 0");
+        db.execSQL("UPDATE contC SET used = 0");
+    }
+
+    public void setUsedA(List<excA> excList){
+        SQLiteDatabase db = this.getWritableDatabase();
+        for (excA exc : excList) {
+            db.execSQL("UPDATE contA SET used = 1 WHERE phrase = '" + exc.getPhrase()+"'");
+        }
+    }
+
+    public void setUsedC(List<excC> excList){
+        SQLiteDatabase db = this.getWritableDatabase();
+        for (excC exc : excList) {
+            db.execSQL("UPDATE contC SET used = 1 WHERE text1 = '" + exc.getText1()+"'");
+        }
+    }
+
+    public void setUsedB(List<excB> excList){
+        SQLiteDatabase db = this.getWritableDatabase();
+        for (excB exc : excList) {
+            db.execSQL("UPDATE contB SET used = 1 WHERE text = '" + exc.getText()+"'");
+        }
     }
 }
