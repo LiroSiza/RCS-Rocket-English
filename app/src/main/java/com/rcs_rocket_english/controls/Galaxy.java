@@ -24,6 +24,7 @@ public class Galaxy extends AppCompatButton {
     Paint pProgBar = new Paint(Paint.ANTI_ALIAS_FLAG);
     Paint pProgBarTotal = new Paint(Paint.ANTI_ALIAS_FLAG);
     Paint pProg = new Paint(Paint.ANTI_ALIAS_FLAG);
+
     private LinearGradient gradient;
     private int width;
     private int height;
