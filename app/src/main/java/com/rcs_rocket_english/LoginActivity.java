@@ -59,6 +59,12 @@ public class LoginActivity extends AppCompatActivity {
                     Log.d("LoginActivity", "Alias: " + alias);
                     Log.d("LoginActivity", "País: " + country);
 
+                    DataBase db = new DataBase(LoginActivity.this);
+
+                    // Registrar un nuevo usuario
+                    db.registerUser(name, alias, country);
+
+
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     intent.putExtra("name", name);
                     intent.putExtra("alias", alias);

@@ -16,6 +16,7 @@ import com.rcs_rocket_english.controls.NavBarMenu;
 public class MainActivity extends AppCompatActivity
         implements NavBarMenu.OnNavItemSelectedListener, NavigationMenu.OnNavItemSelectedListener {
 
+    private DataBase db; // Instancia de la base de datos
     private NavBarMenu navBarMenu;
     private NavigationMenu navigationMenu;
 
@@ -27,8 +28,11 @@ public class MainActivity extends AppCompatActivity
         navBarMenu = findViewById(R.id.navbarMenu);
         navBarMenu.cambiarImagenPerfil(1);
 
+        int exp = getExperience();
+        String expString = String.valueOf(exp);
+
         //inicializar datos de lightning y hearts
-        navBarMenu.setTextLightning("5");
+        navBarMenu.setTextLightning(expString);
         navBarMenu.setTextHearts("10");
 
         // Inicializa los controles
@@ -43,6 +47,8 @@ public class MainActivity extends AppCompatActivity
         configureGalaxyListener(R.id.galaxyDos, R.layout.galaxy_levels_v2);
         configureGalaxyListener(R.id.galaxyTres, R.layout.galaxy_levels_v3);
         configureGalaxyListener(R.id.galaxyCuatro, R.layout.galaxy_levels_v4);
+
+        getExperience();
     }
 
     private void configureGalaxyListener(int buttonId, int layoutId) {
@@ -71,5 +77,12 @@ public class MainActivity extends AppCompatActivity
     private void openActivity(Class<?> activityClass) {
         Intent intent = new Intent(MainActivity.this, activityClass);
         startActivity(intent);
+    }
+
+    public int getExperience(){
+        // Inicializar la instancia de la base de datos
+        db = new DataBase(this);
+        // Obtener la experiencia del primer usuario
+        return db.getExperience();
     }
 }
