@@ -177,6 +177,32 @@ public class DataBase extends SQLiteOpenHelper {
         db.execSQL("INSERT INTO contA (layout_id, category, title, phrase, option1, option2, option3, answer, used) VALUES (6, 'Vocabulario', 'Selecciona la traducción correcta', 'montaña', 'mountain', 'mound', 'mint', 'mountain', 0)");
         db.execSQL("INSERT INTO contA (layout_id, category, title, phrase, option1, option2, option3, answer, used) VALUES (6, 'Vocabulario', 'Selecciona la traducción correcta', 'árbol', 'tree', 'treat', 'three', 'tree', 0)");
 
+        db.execSQL("INSERT INTO contA (layout_id, category, title, phrase, option1, option2, option3, answer, used) VALUES (6, 'Gramatica', 'Selecciona la clasificación correcta', 'ran', 'Present', 'Past', 'Future', 'Past', 0)");
+        db.execSQL("INSERT INTO contA (layout_id, category, title, phrase, option1, option2, option3, answer, used) VALUES (6, 'Gramatica', 'Selecciona la clasificación correcta', 'ran', 'Present', 'Past', 'Future', 'Past', 0)");
+        db.execSQL("INSERT INTO contA (layout_id, category, title, phrase, option1, option2, option3, answer, used) VALUES (7, 'Gramatica', 'Selecciona la clasificación correcta', 'eat', 'Present', 'Past', 'Future', 'Present', 0)");
+        db.execSQL("INSERT INTO contA (layout_id, category, title, phrase, option1, option2, option3, answer, used) VALUES (8, 'Gramatica', 'Selecciona la clasificación correcta', 'played', 'Present', 'Past', 'Future', 'Past', 0)");
+        db.execSQL("INSERT INTO contA (layout_id, category, title, phrase, option1, option2, option3, answer, used) VALUES (9, 'Gramatica', 'Selecciona la clasificación correcta', 'will go', 'Present', 'Past', 'Future', 'Future', 0)");
+        db.execSQL("INSERT INTO contA (layout_id, category, title, phrase, option1, option2, option3, answer, used) VALUES (10, 'Gramatica', 'Selecciona la clasificación correcta', 'was', 'Present', 'Past', 'Future', 'Past', 0)");
+        db.execSQL("INSERT INTO contA (layout_id, category, title, phrase, option1, option2, option3, answer, used) VALUES (11, 'Gramatica', 'Selecciona la clasificación correcta', 'is playing', 'Present', 'Past', 'Future', 'Present', 0)");
+        db.execSQL("INSERT INTO contA (layout_id, category, title, phrase, option1, option2, option3, answer, used) VALUES (12, 'Gramatica', 'Selecciona la clasificación correcta', 'played', 'Present', 'Past', 'Future', 'Past', 0)");
+        db.execSQL("INSERT INTO contA (layout_id, category, title, phrase, option1, option2, option3, answer, used) VALUES (13, 'Gramatica', 'Selecciona la clasificación correcta', 'will eat', 'Present', 'Past', 'Future', 'Future', 0)");
+
+        db.execSQL("INSERT INTO contA (layout_id, category, title, phrase, option1, option2, option3, answer, used) VALUES (6, 'Gramatica', 'Selecciona la clasificación correcta', 'had eaten', 'Present Perfect', 'Past Perfect', 'Future Perfect', 'Past Perfect', 0)");
+        db.execSQL("INSERT INTO contA (layout_id, category, title, phrase, option1, option2, option3, answer, used) VALUES (7, 'Gramatica', 'Selecciona la clasificación correcta', 'will have finished', 'Present Perfect', 'Past Perfect', 'Future Perfect', 'Future Perfect', 0)");
+        db.execSQL("INSERT INTO contA (layout_id, category, title, phrase, option1, option2, option3, answer, used) VALUES (8, 'Gramatica', 'Selecciona la clasificación correcta', 'had been running', 'Present Perfect Continuous', 'Past Perfect Continuous', 'Future Perfect Continuous', 'Past Perfect Continuous', 0)");
+        db.execSQL("INSERT INTO contA (layout_id, category, title, phrase, option1, option2, option3, answer, used) VALUES (9, 'Gramatica', 'Selecciona la clasificación correcta', 'will have been studying', 'Present Perfect Continuous', 'Past Perfect Continuous', 'Future Perfect Continuous', 'Future Perfect Continuous', 0)");
+        db.execSQL("INSERT INTO contA (layout_id, category, title, phrase, option1, option2, option3, answer, used) VALUES (10, 'Gramatica', 'Selecciona la clasificación correcta', 'would speak', 'Present', 'Past', 'Conditional', 'Conditional', 0)");
+        db.execSQL("INSERT INTO contA (layout_id, category, title, phrase, option1, option2, option3, answer, used) VALUES (11, 'Gramatica', 'Selecciona la clasificación correcta', 'has been', 'Present', 'Past', 'Present Perfect', 'Present Perfect', 0)");
+        db.execSQL("INSERT INTO contA (layout_id, category, title, phrase, option1, option2, option3, answer, used) VALUES (12, 'Gramatica', 'Selecciona la clasificación correcta', 'were going', 'Present Continuous', 'Past Continuous', 'Future Continuous', 'Past Continuous', 0)");
+        db.execSQL("INSERT INTO contA (layout_id, category, title, phrase, option1, option2, option3, answer, used) VALUES (13, 'Gramatica', 'Selecciona la clasificación correcta', 'will be working', 'Present Continuous', 'Past Continuous', 'Future Continuous', 'Future Continuous', 0)");
+        db.execSQL("INSERT INTO contA (layout_id, category, title, phrase, option1, option2, option3, answer, used) VALUES (14, 'Gramatica', 'Selecciona la clasificación correcta', 'had been studying', 'Present Perfect Continuous', 'Past Perfect Continuous', 'Future Perfect Continuous', 'Past Perfect Continuous', 0)");
+        db.execSQL("INSERT INTO contA (layout_id, category, title, phrase, option1, option2, option3, answer, used) VALUES (15, 'Gramatica', 'Selecciona la clasificación correcta', 'will have been working', 'Present Perfect Continuous', 'Past Perfect Continuous', 'Future Perfect Continuous', 'Future Perfect Continuous', 0)");
+        db.execSQL("INSERT INTO contA (layout_id, category, title, phrase, option1, option2, option3, answer, used) VALUES (16, 'Gramatica', 'Selecciona la clasificación correcta', 'would have gone', 'Present Perfect', 'Past Perfect', 'Conditional Perfect', 'Conditional Perfect', 0)");
+        db.execSQL("INSERT INTO contA (layout_id, category, title, phrase, option1, option2, option3, answer, used) VALUES (17, 'Gramatica', 'Selecciona la clasificación correcta', 'have been eating', 'Present Perfect Continuous', 'Past Perfect Continuous', 'Future Perfect Continuous', 'Present Perfect Continuous', 0)");
+
+
+
+
         db.execSQL("INSERT INTO contB (layout_id, category, title, phrase, text, used) VALUES (2, 'Vocabulario', 'Traduce el texto', 'El cielo es azul', 'The sky is blue', 0)");
         db.execSQL("INSERT INTO contB (layout_id, category, title, phrase, text, used) VALUES (2, 'Vocabulario', 'Traduce el texto', 'Ella esta leyendo un libro', 'She is reading a book', 0)");
         db.execSQL("INSERT INTO contB (layout_id, category, title, phrase, text, used) VALUES (2, 'Vocabulario', 'Traduce el texto', 'Cierra la puerta', 'Close the door', 0)");
@@ -285,7 +311,7 @@ public class DataBase extends SQLiteOpenHelper {
     @SuppressLint("Range")
     public void listaDatosGalaxy() {
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM galaxy ORDER BY id", null);
+        Cursor cursor = db.rawQuery("SELECT * FROM galaxy order by id", null);
         while (cursor.moveToNext()) {
             // Get column values by their names or indices
              int id = cursor.getInt(cursor.getColumnIndex("id"));

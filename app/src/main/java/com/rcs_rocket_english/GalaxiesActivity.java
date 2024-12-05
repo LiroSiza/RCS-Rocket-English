@@ -106,6 +106,7 @@ public class GalaxiesActivity extends AppCompatActivity implements NavBarMenu.On
         }
 
         DataBase db = new DataBase(this);
+        db.listContA();
         int progress = db.getProgressOfGalaxy(galaxyName);
         // Pasar información adicional al intent
         if(progress > asteroidIndex-1){
