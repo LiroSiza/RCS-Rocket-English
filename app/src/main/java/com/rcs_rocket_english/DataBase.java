@@ -7,6 +7,10 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import com.rcs_rocket_english.excObjects.excA;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 import java.util.Vector;
 
@@ -576,4 +580,63 @@ public class DataBase extends SQLiteOpenHelper {
 
         return progress;
     }
+    @SuppressLint("Range")
+    public List<excA> getExcA(Boolean use, String galaxyName) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        List<excA> exercises = new ArrayList<>();
+        Cursor cursor;
+        // Query to select 3 exercises where 'used' is 0
+        if(use){
+             cursor = db.rawQuery("SELECT * FROM contA WHERE used = 1 LIMIT 3", null);
+        }else{
+             cursor = db.rawQuery("SELECT * FROM contA WHERE used = 0  LIMIT 3", null);
+        }
+
+        if (cursor != null && cursor.moveToFirst()) {
+            do {
+                // Retrieve data from the cursor
+                int layoutId = cursor.getInt(cursor.getColumnIndex("layout_id"));
+                String category = cursor.getString(cursor.getColumnIndex("category"));
+                String title = cursor.getString(cursor.getColumnIndex("title"));
+                String phrase = cursor.getString(cursor.getColumnIndex("phrase"));
+                String option1 = cursor.getString(cursor.getColumnIndex("option1"));
+                String option2 = cursor.getString(cursor.getColumnIndex("option2"));
+                String option3 = cursor.getString(cursor.getColumnIndex("option3"));
+                String answer = cursor.getString(cursor.getColumnIndex("answer"));
+                int used = cursor.getInt(cursor.getColumnIndex("used"));
+
+                // Create an Exercise object and add it to the list
+                exercises.add(new excA(layoutId, category, title, phrase, option1, option2, option3, answer, used));
+
+            } while (cursor.moveToNext());
+
+            cursor.close();
+        }
+
+        return exercises;
+    }
+
+    public void increaseProgress(String galaxyName){
+        SQLiteDatabase db = this.getWritableDatabase();
+        int progress = getProgressOfGalaxy(galaxyName);
+        if(progress < 6){
+            progress++;
+            db.execSQL("UPDATE galaxy SET progress = " + progress + " WHERE name = '" + galaxyName + "'");
+        }
+
+    }
+
+    public void q(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL("UPDATE galaxy SET progress = 0 WHERE name = 'Gramatica'");
+        db.execSQL("UPDATE contA SET used = 0");
+    }
+
+    public void setUsedA(List<excA> excList){
+        SQLiteDatabase db = this.getWritableDatabase();
+        for (excA exc : excList) {
+            db.execSQL("UPDATE contA SET used = 1 WHERE phrase = '" + exc.getPhrase()+"'");
+        }
+    }
+
 }
